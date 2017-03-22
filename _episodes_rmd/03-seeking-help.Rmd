@@ -18,7 +18,6 @@ source("../bin/chunk-options.R")
 knitr_fig_path("03-")
 ```
 
-
 ## Lendo arquivos de ajuda
 R, e todo pacote, fornece arquivos de ajuda para funções. Para procurar ajuda sobre uma função de uma função específica que está em um pacote carregado no seu namespace (sua seção interativa do R):
 

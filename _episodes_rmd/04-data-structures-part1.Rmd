@@ -61,6 +61,7 @@ cats
 
 A função `read.csv` é utilizada para ler dados de tabelas armazenados em um arquivo de texto onde as colunas são delimitadas por vírgulas (csv = comma separated values, i.e., valores separados por vírgulas). Tabs também são comumente usados para separar colunas - se os seus dados estão neste formato você pode usar a função `read.delim`. Se as colunas nos seus dados são delimitadas por um outro caractere além de vírgulas ou tabs, você pode usar a função `read.table`, que é mais geral e flexível.
 
+
 Já podemos começar a explorar o nosso banco de dados, imprimindo colunas especificando elas com o operador `$`:
 
 ```{r}

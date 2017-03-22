@@ -145,7 +145,7 @@ kelvin_to_celsius <- function(temp) {
 
 > ## Desafio 2
 >
-> Defina a função que converte diretamente de Fahrenheit para Celsius, 
+> Defina a função que converte diratamente de Fahrenheit para Celsius, 
 > reutilizando as duas funções acima (ou usando as funções que preferir).
 >
 >
@@ -166,8 +166,9 @@ kelvin_to_celsius <- function(temp) {
 {: .challenge}
 
 
-Nós vamos a definir uma função que calcula o Produto Interno Bruto de uma 
-nação a partir dos dados disponíveis em nosso conjunto de dados:
+We're going to define
+a function that calculates the Gross Domestic Product of a nation from the data
+available in our dataset:
 
 ```{r}
 # Takes a dataset and multiplies the population column
@@ -402,3 +403,4 @@ o que é muito melhor do que em nossa primeira tentativa onde temos um vetor de 
 
 [roxygen2]: http://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html
 [testthat]: http://r-pkgs.had.co.nz/tests.html
+

@@ -1,16 +1,16 @@
 ---
-title: Control Flow
+title: Controle de Fluxo
 teaching: 45
 exercises: 20
 questions:
-- "How can I make data-dependent choices in R?"
-- "How can I repeat operations in R?"
+- "Como tomar decisões condicionadas aos dados no R?"
+- "Como posso repetir operações no R?"
 objectives:
-- "Write conditional statements with `if()` and `else()`."
-- "Write and understand `for()` loops."
+- "Escrever comandos condicionais com `if()` e `else()`."
+- "Escrever e entender `for()` loops."
 keypoints:
-- "Use `if` and `else` to make choices."
-- "Use `for` to repeat operations."
+- "Use `if` e `else` para fazer escolhas."
+- "Use `for` para repetir operações."
 source: Rmd
 ---
 

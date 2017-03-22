@@ -7,7 +7,7 @@ questions:
 objectives:
 - "Poder usar a estratégia de split-apply-combine para análise de dados."
 keypoints:
-- "Use o pacote `plyr` para dividir dados, aplicar funções aos subconjuntos e combinar os resultados."
+- "Usar o pacote `plyr` para dividir dados, aplicar funções aos subconjuntos e combinar os resultados."
 ---
 
 

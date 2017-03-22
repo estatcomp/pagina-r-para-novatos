@@ -23,121 +23,115 @@ gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
 set.seed(10)
 ```
 
-Often when we're coding we want to control the flow of our actions. This can be done
-by setting actions to occur only if a condition or a set of conditions are met.
-Alternatively, we can also set an action to occur a particular number of times.
+Muitas vezes quando estamos programando queremos controlar o fluxo de nossas ações. Isto pode ser feito definindo ações (comandos) para ocorrer apenas quando uma condição ou um conjunto de condições forem satisfeitas. Uma outra alternativa é definir um conjunto de ações para ocorrer determinado número de vezes. Vale ressaltar que o R utiliza da língua inglesa para seus comandos, assim, a condição "se" é descrita como "if".
 
-There are several ways you can control flow in R.
-For conditional statements, the most commonly used approaches are the constructs:
+Existem várias maneiras de se controlar o fluxo no R. Para sentenças que são condicionadas, as abordagens mais utilizadas são as seguintes:
 
 ```{r, eval=FALSE}
 # if
-if (condition is true) {
-  perform action
+if (condição é verdadeira) {
+  executar ação
 }
 
 # if ... else
-if (condition is true) {
-  perform action
-} else {  # that is, if the condition is false,
-  perform alternative action
+if (condição é verdadeira) {
+  executar ação
+} else {  # se a condição for falsa,
+  executar ação alternativa
 }
 ```
 
-Say, for example, that we want R to print a message if a variable `x` has a particular value:
+Digamos, por exemplo, que queremos que o R mostre uma mensagem se uma variável x tem um valor em particular:
 
 ```{r}
-# sample a random number from a Poisson distribution
-# with a mean (lambda) of 8
+# amostre um número aleatório de uma distribuição de Poisson
+# com média (lambda) 8
 
 x <- rpois(1, lambda=8)
 
 if (x >= 10) {
-  print("x is greater than or equal to 10")
+  print("x é maior ou igual a 10")
 }
 
 x
 ```
 
-Note you may not get the same output as your neighbour because
-you may be sampling different random numbers from the same distribution.
+Note que você pode não está obtendo a mesma saída que o seu colega, isto porque mesmo sendo números da mesma distribuição, estes são aleatórios.
 
-Let's set a seed so that we all generate the same 'pseudo-random'
-number, and then print more information:
+Vamos definir um *seed*, semente, para que todos nós possamos gerar números "pseudo-aleatórios", e, em seguida, mostrar mais informações:
 
 ```{r}
 set.seed(10)
 x <- rpois(1, lambda=8)
 
 if (x >= 10) {
-  print("x is greater than or equal to 10")
+  print("x é maior ou igual a 10")
 } else if (x > 5) {
-  print("x is greater than 5")
+  print("x é maior que 5")
 } else {
-  print("x is less than 5")
+  print("x é menor que 5")
 }
 ```
 
-> ## Tip: pseudo-random numbers
+> ## Dica: Números pseudo-aleatórios
 >
-> In the above case, the function `rpois()` generates a random number following a
-> Poisson distribution with a mean (i.e. lambda) of 8. The function `set.seed()`
-> guarantees that all machines will generate the exact same 'pseudo-random'
-> number ([more about pseudo-random numbers](http://en.wikibooks.org/wiki/R_Programming/Random_Number_Generation)).
-> So if we `set.seed(10)`, we see that `x` takes the value 8. You should get the
-> exact same number.
+> No caso acima, a função `rpois()` gera um número aleatório a partir
+> de uma distribuição de Poisson com uma média (ou seja, lambda) 8. A função
+> `set.seed()` garante que todas as máquinas irão gerar o mesmo número
+> pseudo-aleatórios [(mais sobre números  pseudo-aleatórios)](https://en.wikibooks.org/wiki/R_Programming/Random_Number_Generation).
+> Então se definirmos `set.seed(10)`, vemos que x toma o valor 8.
+> Você deve obter o mesmo número.
 {: .callout}
 
-**Important:** when R evaluates the condition inside `if()` statements, it is
-looking for a logical element, i.e., `TRUE` or `FALSE`. This can cause some
-headaches for beginners. For example:
+     
+**Importante:** quando R avalia a condição dentro do `if()`, ele está procurando um elemento lógico, isto é, `TRUE` ou `FALSE`. Isso pode causar algumas dores de cabeça para iniciantes. Por exemplo:
 
 ```{r}
 x  <-  4 == 3
 if (x) {
-  "4 equals 3"
+  "4 igual a 3"
 }
 ```
 
-As we can see, the message was not printed because the vector x is `FALSE`
+Como podemos ver, a mensagem não foi mostrada porque o vetor x é `FALSO`
 
 ```{r}
 x <- 4 == 3
 x
 ```
 
-> ## Challenge 1
+> ## Desafio 1
 >
-> Use an `if()` statement to print a suitable message
-> reporting whether there are any records from 2002 in
-> the `gapminder` dataset.
-> Now do the same for 2012.
+> Use o comando `if()` para mostrar uma mensagem
+> reportando se há algum registro de 2002 do
+> conjunto de dados `gapminder`. 
+> Faça o mesmo para 2012.
 >
-> > ## Solution to Challenge 1
-> > We will first see a solution to Challenge 1 which does not use the `any()` function.
-> > We first obtain a logical vector describing which element of `gapminder$year` is equal to `2002`:
+> > ## Solução do desafio 1
+> > Veremos uma solução para o Desafio 1 que não inclue a função `any()`.
+> > Primeiro obtemos um vetor lógico que descreve qual elemento do `gapminder$year` é igual a 2002:
 > > ```{r ch10pt1-sol, eval=FALSE}
 > > gapminder[(gapminder$year == 2002),]
 > > ```
-> > Then, we count the number of rows of the data.frame `gapminder` that correspond to the 2002:
+> > Em seguida, contaremos o número de linhas do data.frame `gapminder`que corresponde a 2002:
 > > ```{r ch10pt2-sol, eval=FALSE}
 > > rows2002_number <- nrow(gapminder[(gapminder$year == 2002),])
 > > ```
-> > The presence of any record for the year 2002 is equivalent to the request that `rows2002_number` is one or more:
+> > A presença de algum registro de 2002 é equivalente a `rows2002_number` ser um ou mais:
 > > ```{r ch10pt3-sol, eval=FALSE}
 > > rows2002_number >= 1
 > > ```
-> > Putting all together, we obtain:
+> > Colocando tudo junto, obtemos:
 > > ```{r ch10pt4-sol, eval=FALSE}
 > > if(nrow(gapminder[(gapminder$year == 2002),]) >= 1){
-> >    print("Record(s) for the year 2002 found.")
+> >    print("Registro(s) do ano 2002 encontrado(s).")
 > > }
 > > ```
 > >
-> > All this can be done more quickly with `any()`. The logical condition can be expressed as:
+> > Tudo isto pode se feito rapidamento utilizando a função `any()`. A condição logica para isto pode ser expressa por:
 > > ```{r ch10pt5-sol, eval=FALSE}
 > > if(any(gapminder$year == 2002)){
-> >    print("Record(s) for the year 2002 found.")
+> >    print("Registro(s) do ano 2002 encontrado(s).")
 > > }
 > > ```
 > >
@@ -145,44 +139,36 @@ x
 {: .challenge}
 
 
-Did anyone get a warning message like this?
+Alguém obteve uma mensagem de aviso como esta?
 
 ```{r, echo=FALSE}
 if (gapminder$year == 2012) {}
 ```
 
-If your condition evaluates to a vector with more than one logical element,
-the function `if()` will still run, but will only evaluate the condition in the first
-element. Here you need to make sure your condition is of length 1.
+Se a sua condição avalia um vetor com mais de um elemento lógico, a função `if()` ainda será executada, mas irá avaliar apenas  a condição no primeiro elemento. Você precisa ter certeza que sua condição é de comprimento 1.
 
-> ## Tip: `any()` and `all()`
+> ## Dica: `any()` e `all()`
 >
-> The `any()` function will return TRUE if at least one
-> TRUE value is found within a vector, otherwise it will return `FALSE`.
-> This can be used in a similar way to the `%in%` operator.
-> The function `all()`, as the name suggests, will only return `TRUE` if all values in
-> the vector are `TRUE`.
+> A função `any()` irá retornar `TRUE` se pelo menos
+> um valor `TRUE` for encontrado dentro do vetor, caso contrário a função irá retornar `FALSE`.
+> Isto pode ser utilizado de uma maneira semelhante ao operador `%in%`.
+> A função `all()`, como o nome sugere, irá retornar apenas `TRUE` se todos os valores
+> do vetor são verdadeiros.
 {: .callout}
 
-## Repeating operations
+## Operações repetidas
 
-If you want to iterate over
-a set of values, when the order of iteration is important, and perform the
-same operation on each, a `for()` loop will do the job.
-We saw `for()` loops in the shell lessons earlier. This is the most
-flexible of looping operations, but therefore also the hardest to use
-correctly. Avoid using `for()` loops unless the order of iteration is important:
-i.e. the calculation at each iteration depends on the results of previous iterations.
+Se você quiser interagir sobre um conjunto de valores, quando a ordem da iteração é importante, e realizar a mesma operação em cada um deles, o laço `for()` irá fazer este trabalho. Vimos laços do `for()` nas lições anteriores do *Shell*. Dentro os laços de operações, este é o mais flexível, mas também é o mais difícil de usar corretamente. Evite o uso de laços `for()` a menos que a ordem de iteração seja importante: isto é, o cálculo em cada iteração depende dos resultados das iterações anteriores.
 
-The basic structure of a `for()` loop is:
+A estrutura básica de um laço `for()` é:
 
 ```{r, eval=FALSE}
-for(iterator in set of values){
-  do a thing
+for(iterador no conjunto de valores){
+  faça algo
 }
 ```
 
-For example:
+Por exemplo:
 
 ```{r}
 for(i in 1:10){
@@ -190,11 +176,9 @@ for(i in 1:10){
 }
 ```
 
-The `1:10` bit creates a vector on the fly; you can iterate
-over any other vector as well.
+A sequência `1:10` cria um vetor; você pode interagir sobre qualquer outro vetor também.
 
-We can use a `for()` loop nested within another `for()` loop to iterate over two things at
-once.
+Podemos usar o laço `for()` aninhado em outro laço `for()` para iterar sobre duas coisas ao mesmo tempo.
 
 ```{r}
 for(i in 1:5){
@@ -204,7 +188,7 @@ for(i in 1:5){
 }
 ```
 
-Rather than printing the results, we could write the loop output to a new object.
+Em vez de imprimir os resultados, podemos escrever a saída do **laço* em um novo objeto.
 
 ```{r}
 output_vector <- c()
@@ -217,25 +201,22 @@ for(i in 1:5){
 output_vector
 ```
 
-This approach can be useful, but 'growing your results' (building
-the result object incrementally) is computationally inefficient, so avoid
-it when you are iterating through a lot of values.
+Esta abordagem pode ser útil, mas "aumentar seus resultados" (criando incrementalmente o objeto do resultado) é computacionalmente ineficiente, então o evite quando você estiver interagindo através de uma série de valores.
 
-> ## Tip: don't grow your results
+
+> ## Dica: Não "aumente seus resultados"
 >
-> One of the biggest things that trips up novices and
-> experienced R users alike, is building a results object
-> (vector, list, matrix, data frame) as your for loop progresses.
-> Computers are very bad at handling this, so your calculations
-> can very quickly slow to a crawl. It's much better to define
-> an empty results object before hand of the appropriate dimensions.
-> So if you know the end result will be stored in a matrix like above,
-> create an empty matrix with 5 row and 5 columns, then at each iteration
-> store the results in the appropriate location.
+> Uma das maiores coisas que atrapalha os novatos em R
+> e até mesmo usuários mais experientes, é construir um objeto
+> de resultados (vetor, lista, matriz, conjunto de dados) enquanto o seu laço *for* progride.
+> Computadores são muito ruins em lidar com isso, então seus cálculos podem ser muito lerdos.
+> É muito melhor definir um objeto de resultados vazio antes com as dimensões apropriadas.
+> Sendo assim, o resultado final será guardado em uma matriz 
+> como mostrado abaixo, crie uma matriz vazia com 5 linhas e
+> 5 colunas, em seguida, em cada iteração armazene os resultados no local apropriado.
 {: .callout}
 
-A better way is to define your (empty) output object before filling in the values.
-For this example, it looks more involved, but is still more efficient.
+Uma melhor maneira é definir o seu objeto (Vazio) de saída antes de preencher os valores. Este exemplo parece ser mais complexo, mas ainda é mais eficiente.
 
 ```{r}
 output_matrix <- matrix(nrow=5, ncol=5)
@@ -251,21 +232,21 @@ output_vector2 <- as.vector(output_matrix)
 output_vector2
 ```
 
-> ## Tip: While loops
->
->
-> Sometimes you will find yourself needing to repeat an operation until a certain
-> condition is met. You can do this with a `while()` loop.
->
+> ## Dica: Laço ``while``
+> 
+> 
+> As vezes você precisará repetir uma operação até uma certa condição ocorrer.
+> Isto pode ser feito através do laço `while()`, do português *enquanto*.
+> 
 > ```{r, eval=FALSE}
-> while(this condition is true){
->   do a thing
+> while(essa condção é verdadeira){
+>  faça algo
 > }
 > ```
 >
-> As an example, here's a while loop
-> that generates random numbers from a uniform distribution (the `runif()` function)
-> between 0 and 1 until it gets one that's less than 0.1.
+> Como por exemplo, aqui está um laço `while()` 
+> que gerar valores da distribuição uniforme (a função `runif()`)
+>  entre 0 e 1 até conseguir um valor que seja menor que 0.1.
 >
 > ~~~
 > z <- 1
@@ -276,133 +257,133 @@ output_vector2
 > ~~~
 > {: .r}
 >
-> `while()` loops will not always be appropriate. You have to be particularly careful
-> that you don't end up in an infinite loop because your condition is never met.
+> O laço `while()` nem sempre será apropriada. Você deve ser bastante cauteloso 
+> para não acabar em um laço infinito devido a sua condição não ser alcançada.
 {: .callout}
 
 
-> ## Challenge 2
+
+> ## Desafio 2
 >
-> Compare the objects output_vector and
-> output_vector2. Are they the same? If not, why not?
-> How would you change the last block of code to make output_vector2
-> the same as output_vector?
+> Compare os objetos `output_vector` e `output_vector2`.
+> Eles são iguais? Se não, por que não?
+> Como você poderia mudar o último bloco de
+> códigos para fazer `output_vector2` ser igual a `output_vector`?
 >
-> > ## Solution to Challenge 2
-> > We can check whether the two vectors are identical using the `all()` function:
+> > ## Solução do desafio 2
+> > Podemos checar se os dois vetores são idênticos usando a função `all()`:
 > > ```{r ch10pt6-sol, eval=FALSE}
 > > all(output_vector == output_vector2)
 > > ```
-> > However, all the elements of `output_vector` can be found in `output_vector2`:
+> > No entanto, todos os elementos de `output_vector` podem ser encontrados no `output_vector2`:
 > > ```{r ch10pt7-sol, eval=FALSE}
 > > all(output_vector %in% output_vector2)
 > > ```
-> > and vice versa:
+> > e vice versa:
 > > ```{r ch10pt8-sol, eval=FALSE}
 > > all(output_vector2 %in% output_vector)
 > > ```
-> > therefore, the element in `output_vector` and `output_vector2` are just sorted in a different order.
-> > This is because `as.vector()` outputs the elements of an input matrix going over its column.
-> > Taking a look at `output_matrix`, we can notice that we want its elements by rows.
-> > The solution is to transpose the `output_matrix`. We can do it either by calling the transpose function
-> > `t()` or by inputing the elements in the right order.
-> > The first solution requires to change the original
+> > Portanto, os elementos em `output_vector` e `output_vector2` estão ordenados de uma maneira diferente.
+> > Isso porque a saída de `as.vector()` são os elementos de uma matriz de entrada pela sua coluna.
+> > Olhando `output_matrix`, podemos notar que queremos seus elementos por linha.
+> > A solução é transpor a `output_matrix`. Podemos fazer isto usando a função
+> > transposta `t()` ou colocando os elementos na ordem certa.
+> > A primeira solução requer mudar a original.
 > > ```{r ch10pt9-sol, eval=FALSE}
 > > output_vector2 <- as.vector(output_matrix)
 > > ```
-> > into
+> > em
 > > ```{r ch10pt10-sol, eval=FALSE}
 > > output_vector2 <- as.vector(t(output_matrix))
 > > ```
-> > The second solution requires to change
+> > A segunda solução requer mudar
 > > ```{r ch10pt11-sol, eval=FALSE}
 > > output_matrix[i, j] <- temp_output
 > > ```
-> > into
+> > em
 > > ```{r ch10pt12-sol, eval=FALSE}
 > > output_matrix[j, i] <- temp_output
 > > ```
 > {: .solution}
 {: .challenge}
 
-> ## Challenge 3
+> ## Desafio 3
 >
-> Write a script that loops through the `gapminder` data by continent and prints out
-> whether the mean life expectancy is smaller or larger than 50
-> years.
+> Escreva um script que que faça um laço nos dados `gapminder` por continente e mostre se 
+> a média da expectativa de vida é menor ou maior do que 50 anos.
 >
-> > ## Solution to Challenge 3
+> > ## Solução do desafio 3
 > >
-> > **Step 1**:  We want to make sure we can extract all the unique values of the continent vector
+> > **Passo 1**:  Queremos ter certeza que conseguimos extrair todos os valores únicos do vetor continente.
 > > ```{r 07-chall-03-sol-a, eval=FALSE}
 > > gapminder <- read.csv("data/gapminder-FiveYearData.csv")
 > > unique(gapminder$continent)
 > > ```
 > >
-> > **Step 2**: We also need to loop over each of these continents and calculate the average life expectancy for each `subset` of data.
-> > We can do that as follows:
+> > **Passo 2**: Devemos também fazer um laço em cada um dos continentes e calcular a média da expectativa de vida para cada `subconjunto` dos dados.
+> > Podemos fazer isso da seguinte maneira:
 > >
-> > 1. Loop over each of the unique values of 'continent'
-> > 2. For each value of continent, create a temporary variable storing the life exepectancy for that subset,
-> > 3. Return the calculated life expectancy to the user by printing the output:
+> > 1. Faça um laço em cada um dos valores únicos de `continent`
+> > 2. Para cada valor de `continent`, crie uma variável temporária que armazene a expectativa de vida para aquele subconjunto,
+> > 3. Retorne a expectativa de vida calculada mostrando o resultado:
 > >
 > > ```{r 07-chall-03-sol-b, eval=FALSE}
 > > for( iContinent in unique(gapminder$continent) ){
 > >    tmp <- mean(subset(gapminder, continent==iContinent)$lifeExp)
-> >    cat("Average Life Expectancy in", iContinent, "is", tmp, "\n")
+> >    cat("A média da expectativa de vida em", iContinent, "é", tmp, "\n")
 > >    rm(tmp)
 }
 > > ```
 > >
-> > **Step 3**: The exercise only wants the output printed if the average life expectancy is less than 50 or greater than 50. So we need to add an `if` condition before printing.
-> > So we need to add an `if` condition before printing, which evaluates whether the calculated average life expectancy is above or below a threshold, and print an output conditional on the result.
-> > We need to amend (3) from above:
+> > **Passo 3**: O Exercício apenas quer que mostre se a média da expectativa de vida é maior ou menor do que 50.
+> > Então precisamos adicionar uma condição `if` antes de mostrar o resultado.A função avalia se a média da expectativa de vida calculada é menor ou maior do que um limiar, e mostre uma saída condicionada ao resultado.
+> > Precisamos corrigir (3) de cima:
 > >
-> > 3a. If the calculated life expectancy is less than some threshold (50 years), return the continent and a statement that life expectancy is less than threshold, otherwise return the continent and   a statement that life expectancy is greater than threshold,:
+> > Se a expectativa de vida calculada for menor que um valor limiar (50 anos), retorne o continente e a afirmação que a expectativa de vida é menor que o valor limiar, caso contrário retorne o continente e uma afirmação que a expectativa de vida é maior que o valor limiar:
 > >
 > > ```{r 07-chall-03-sol-c, eval=FALSE}
-> > thresholdValue <- 50
+> > valorlimiar <- 50
 > >
 > > for( iContinent in unique(gapminder$continent) ){
 > >    tmp <- mean(subset(gapminder, continent==iContinent)$lifeExp)
 > >    
 > >    if(tmp < thresholdValue){
-> >        cat("Average Life Expectancy in", iContinent, "is less than", thresholdValue, "\n")
+> >        cat("A média da expectativa de vida em"", iContinent, "é menor que", valorlimiar, "\n")
 > >    }
 > >    else{
-> >        cat("Average Life Expectancy in", iContinent, "is greater than", thresholdValue, "\n")
+> >        cat("A média da expectativa de vida em"", iContinent, "é maior que", valorlimiar, "\n")
 > >         } # end if else condition
 > >    rm(tmp)
-> >    } # end for loop
+> >    } # Fim do laço
 > >
 > > ```
 > {: .solution}
 {: .challenge}
 
-> ## Challenge 4
+> ## Desafio 4
 >
-> Modify the script from Challenge 4 to loop over each
-> country. This time print out whether the life expectancy is
-> smaller than 50, between 50 and 70, or greater than 70.
+> Modifique o script do Desafio 3 para fazer um laço em cada país.
+> Dessa vez deverá mostrar se a expectativa de vida é menor
+> que 50, entre 50 e 70 ou maior que 70.
 >
-> > ## Solution to Challenge 4
-> >  We modify our solution to Challenge 3 by now adding two thresholds, `lowerThreshold` and `upperThreshold` and extending our if-else statements:
+> > ## Solução do desafio 4
+> >  Nós modificamos nossa solução do Desafio 3 adicionando 2 valores limiares (limiar inferior e limiar superior) e estendendo as instruções `if-else`:
 > >
 > > ```{r 07-chall-04-sol, eval=FALSE}
-> >  lowerThreshold <- 50
-> >  upperThreshold <- 70
+> >  limiarinferior <- 50
+> >  limiarsuperior <- 70
 > >  
 > > for( iCountry in unique(gapminder$country) ){
 > >     tmp <- mean(subset(gapminder, country==iCountry)$lifeExp)
 > >     
-> >     if(tmp < lowerThreshold){
-> >         cat("Average Life Expectancy in", iCountry, "is less than", lowerThreshold, "\n")
+> >     if(tmp < limiarinferior){
+> >         cat("A média da expectativa de vida em", iCountry, "é menor que", limiarinferior, "\n")
 > >     }
-> >     else if(tmp > lowerThreshold && tmp < upperThreshold){
-> >         cat("Average Life Expectancy in", iCountry, "is between", lowerThreshold, "and", upperThreshold, "\n")
+> >     else if(tmp > limiarinferior && tmp < limiarsuperior){
+> >         at("A média da expectativa de vida em", iCountry, "está entre", limiarinferior, "e", limiarsuperior, "\n")
 > >     }
 > >     else{
-> >         cat("Average Life Expectancy in", iCountry, "is greater than", upperThreshold, "\n")
+> >         cat("A média da expectativa de vida em", iCountry, "é maior que", limiarsuperior, "\n")
 > >     }
 > >     rm(tmp)
 > > }
@@ -410,49 +391,49 @@ output_vector2
 > {: .solution}
 {: .challenge}
 
-> ## Challenge 5 - Advanced
+> ## Desafio 5 - Avançado
 >
-> Write a script that loops over each country in the `gapminder` dataset,
-> tests whether the country starts with a 'B', and graphs life expectancy
-> against time as a line graph if the mean life expectancy is under 50 years.
+> Escreva um script que faça um laço em cada país da base de dados `gapminder`,
+> teste se o país começa com "B", e faça um gráfico de linha de Expectativa de vida X Tempo
+> se a média da expectativa de vida é menor que 50 anos.
 >
-> > Solution for Challenge 5
+> > Solução do desafio 5
 > >
-> > We will use the `grep` command that was introduced in the Unix Shell lesson to find countries that start with "B."
-> > Lets understand how to do this first.
-> > Following from the Unix shell section we may be tempted to try the following
+> > Vamos usar o comando `grep`, que foi introduzido na lição *Unix Shell* para encontrar quais países começam com "B".
+> > Vamos entender como fazer isto primeiro.
+> >Seguindo a seção da lição *Unix Shell* somos tentados a tentar o seguinte:
 > > ```{r 07-chall-05-sol-a, eval=FALSE}
 > > grep("^B", unique(gapminder$country))
 > > ```
 > >
-> > But when we evaluate this command it returns the indices of the factor variable `country` that start with "B."
-> > To get the values, we must add the `value=TRUE` option to the `grep` command:
+> > Mas quando avaliamos este comando ele retorna os indices da variável fator `país` que começa com "B".
+> > Para conseguir os valores, devemos adicionar a opção `value=TRUE` no comando `grep`:
 > >
 > > ```{r 07-chall-05-sol-b, eval=FALSE}
 > > grep("^B", unique(gapminder$country), value=TRUE)
 > > ```
 > >
-> > We will now store these countries in a variable called candidateCountries, and then loop over each entry in the variable.
-> > Inside the loop, we evaluate the average life expectancy for each country, and if the average life expectancy is less than 50 we use base-plot to plot the evolution of average life expectancy:
+> > Vamos agora armazenar esses países em uma variável `paisesCandidatos`, e então fazer um laço em cada entrada da variável.
+> > Dentro do laço, avaliamos a média da expectativa de vida para cada país, e se a média é menor do que 50 anos. Usamos *base-plot* para plotar a evolução da média da expectativa de vida:
 > >
 > > ```{r 07-chall-05-sol-c, eval=FALSE}
-> > candidateCountries <- grep("^B", unique(gapminder$country), value=TRUE)
+> > paisescondidatos <- grep("^B", unique(gapminder$country), value=TRUE)
 > >
-> > for( iCountry in candidateCountries){
+> > for( iCountry in paisescondidatos){
 > >     tmp <- mean(subset(gapminder, country==iCountry)$lifeExp)
 > >     
-> >     if(tmp < thresholdValue){
-> >         cat("Average Life Expectancy in", iCountry, "is less than", thresholdValue, "plotting life expectancy graph... \n")
+> >     if(tmp < valorlimiar){
+> >         cat("A média da expectativa de vida em", iCountry, "é menor que", valorlimiar, "plotando o gráfico da expectativa de vida... \n")
 > >         
 > >         with(subset(gapminder, country==iCountry),
 > >                 plot(year,lifeExp,
 > >                      type="o",
-> >                      main = paste("Life Expectancy in", iCountry, "over time"),
-> >                      ylab = "Life Expectancy",
-> >                      xlab = "Year"
-> >                    ) # end plot
-> >               ) # end with
-> >     } # end for loop
+> >                     main = paste("Expectativa de vida em", iCountry, "ao longo do tempo"),
+> >                      ylab = "Expectativa de vida",
+> >                      xlab = "Ano"
+> >                    ) # Final do gráfico
+> >               ) # Final do With
+> >     } # Final do laço
 > >     rm(tmp)
 > >  }```
 > {: .solution}

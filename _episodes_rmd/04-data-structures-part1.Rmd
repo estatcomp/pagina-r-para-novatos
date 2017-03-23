@@ -4,15 +4,15 @@ teaching: 40
 exercises: 15
 questions:
 - "Como eu posso ler dados no R?"
-- "Quais são os tipos básicos de dados no R?"
-- "Como eu represento informações categóricas em R?"
+- "Quais sÃ£o os tipos bÃ¡sicos de dados no R?"
+- "Como eu represento informaÃ§Ãµes categÃ³ricas em R?"
 objectives:
 - "Conhecer os diferentes tipos de dados."
-- "Começar a explorar data frames, e entender como eles estão relacionados a vetores, fatores e listas."
-- "Ser capaz de perguntar ao R questões sobre o tipo, classe e estrutura de um objeto."
+- "ComeÃ§ar a explorar data frames, e entender como eles estÃ£o relacionados a vetores, fatores e listas."
+- "Ser capaz de perguntar ao R questÃµes sobre o tipo, classe e estrutura de um objeto."
 keypoints:
 - "Usar `read.csv` para ler dados tabulares em R."
-- "Os tipos básicos de dados em R são double, inteiro, complexo, lógico e caractere."
+- "Os tipos bÃ¡sicos de dados em R sÃ£o double, inteiro, complexo, lÃ³gico e caractere."
 - "Usar fatores para representar categorias em R."
 ---
 
@@ -30,7 +30,7 @@ cats_bad <- data.frame(coat = factor(c("calico", "black", "tabby", "tabby")),
 cats <- cats_orig
 ```
 
-Uma das caracter�?sticas mais poderosas do R é sua capacidade de lidar com dados em tabelas - como você já deve ter visto em uma planilha em CSV. Vamos começar fazendo um banco de dados para testes na sua pasta `data/`, chamado _ directory, called `feline-data.csv`:
+Uma das caracterÃ?sticas mais poderosas do R Ã© sua capacidade de lidar com dados em tabelas - como vocÃª jÃ¡ deve ter visto em uma planilha em CSV. Vamos comeÃ§ar fazendo um banco de dados para testes na sua pasta `data/`, chamado _ directory, called `feline-data.csv`:
 
 ```{r, eval=FALSE}
 coat,weight,likes_string
@@ -41,7 +41,7 @@ tabby,3.2,1
 
 > ## Dica: Editando arquivos de texto em R
 >
-> Alternativamente, você pode criar `data/feline-data.csv` usando um editor de texto
+> Alternativamente, vocÃª pode criar `data/feline-data.csv` usando um editor de texto
 > (Nano), ou dentro do RStudio com o item do menu **Arquivo -> Novo Arquivo -> Arquivo de texto**.
 {: .callout}
 
@@ -52,27 +52,27 @@ cats.df <- data.frame(coat = c("calico", "black", "tabby"),
 write.csv(cats.df, "data/feline-data.csv", row.names = FALSE)
 ```
 
-Você pode carregar isso no R com o seguinte comando:
+VocÃª pode carregar isso no R com o seguinte comando:
 
 ```{r}
 cats <- read.csv(file = "data/feline-data.csv")
 cats
 ```
 
-A função `read.csv` é utilizada para ler dados de tabelas armazenados em um arquivo de texto onde as colunas são delimitadas por v�?rgulas (csv = comma separated values, i.e., valores separados por v�?rgulas). Tabs também são comumente usados para separar colunas - se os seus dados estão neste formato você pode usar a função `read.delim`. Se as colunas nos seus dados são delimitadas por um outro caractere além de v�?rgulas ou tabs, você pode usar a função `read.table`, que é mais geral e flex�?vel.
+A funÃ§Ã£o `read.csv` Ã© utilizada para ler dados de tabelas armazenados em um arquivo de texto onde as colunas sÃ£o delimitadas por vÃ?rgulas (csv = comma separated values, i.e., valores separados por vÃ?rgulas). Tabs tambÃ©m sÃ£o comumente usados para separar colunas - se os seus dados estÃ£o neste formato vocÃª pode usar a funÃ§Ã£o `read.delim`. Se as colunas nos seus dados sÃ£o delimitadas por um outro caractere alÃ©m de vÃ?rgulas ou tabs, vocÃª pode usar a funÃ§Ã£o `read.table`, que Ã© mais geral e flexÃ?vel.
 
 
-Já podemos começar a explorar o nosso banco de dados, imprimindo colunas especificando elas com o operador `$`:
+JÃ¡ podemos comeÃ§ar a explorar o nosso banco de dados, imprimindo colunas especificando elas com o operador `$`:
 
 ```{r}
 cats$weight
 cats$coat
 ```
 
-Nós podemos fazer outras operações nas colunas:
+NÃ³s podemos fazer outras operaÃ§Ãµes nas colunas:
 
 ```{r}
-## Digamos que nós descobrimos que a escala de quilos tem dois Kg a menos:
+## Digamos que nÃ³s descobrimos que a escala de quilos tem dois Kg a menos:
 cats$weight + 2
 paste("My cat is", cats$coat)
 ```
@@ -83,28 +83,28 @@ Mas e se fizermos
 cats$weight + cats$coat
 ```
 
-Entendendo o que aconteceu aqui é a chave para analisar dados em R de maneira satisfatória.
+Entendendo o que aconteceu aqui Ã© a chave para analisar dados em R de maneira satisfatÃ³ria.
 
 ## Tipos de Dados
 
-Se você imaginasse que o último comando fosse retornar um erro porque `2.1` mais `"black"` não faz sentido, você estava certo - e você já tem alguma intuição para um importante conceito em programação chamado *tipos de dados*. Podemos perguntar que tipo de dado algo é:
+Se vocÃª imaginasse que o Ãºltimo comando fosse retornar um erro porque `2.1` mais `"black"` nÃ£o faz sentido, vocÃª estava certo - e vocÃª jÃ¡ tem alguma intuiÃ§Ã£o para um importante conceito em programaÃ§Ã£o chamado *tipos de dados*. Podemos perguntar que tipo de dado algo Ã©:
 
 ```{r}
 typeof(cats$weight)
 ```
 
-Existem 5 tipos principais de dados:`duplo`, `inteiro`, `complexo`, `lógico` e `caracter`.
+Existem 5 tipos principais de dados:`duplo`, `inteiro`, `complexo`, `lÃ³gico` e `caracter`.
 
 ```{r}
 typeof(3.14)
-typeof(1L) # O sufixo L força o número a ser um inteiro, uma vez que o padrão do R usa números fltuantes
+typeof(1L) # O sufixo L forÃ§a o nÃºmero a ser um inteiro, uma vez que o padrÃ£o do R usa nÃºmeros fltuantes
 typeof(1+1i)
 typeof(TRUE)
 typeof('banana')
 ```
 
-Não importa quão complicada sua analize se torne, todos os dados em R são interpretados como um desses tipos básicos de dados.Esse rigor tem algumas consequências importantes. 
-Um usuário adicionou detalhes sobre outro gato. Essas informações estão no aquivo
+NÃ£o importa quÃ£o complicada sua analize se torne, todos os dados em R sÃ£o interpretados como um desses tipos bÃ¡sicos de dados.Esse rigor tem algumas consequÃªncias importantes. 
+Um usuÃ¡rio adicionou detalhes sobre outro gato. Essas informaÃ§Ãµes estÃ£o no aquivo
 `data/feline-data_v2.csv`.
 
 
@@ -129,21 +129,21 @@ typeof(cats$weight)
 ```
 
 
-Ah não, nossos pesos não estão mais no tipo double! Se tentarmos usar a mesma lógica que usamos antes, teremos problemas: 
+Ah nÃ£o, nossos pesos nÃ£o estÃ£o mais no tipo double! Se tentarmos usar a mesma lÃ³gica que usamos antes, teremos problemas: 
 
 ```{r}
 cats$weight + 2
 ```
 
-O que aconteceu? Quando o R lê um csv nessas tabelas, ele insiste que tudo na coluna seja do mesmo tipo básico; se ele não pode entender *tudo* na coluna como double, então *ninguém* na coluna será double. A tabela em que o R carregou os dados dos gatos é algo chamado *data.frame*, e esse é o nosso primeiro exemplo de algo chamado *estrutura de dados* - que é, a estrutura em que o R sabe construir os tipos de dados básicos. 
+O que aconteceu? Quando o R lÃª um csv nessas tabelas, ele insiste que tudo na coluna seja do mesmo tipo bÃ¡sico; se ele nÃ£o pode entender *tudo* na coluna como double, entÃ£o *ninguÃ©m* na coluna serÃ¡ double. A tabela em que o R carregou os dados dos gatos Ã© algo chamado *data.frame*, e esse Ã© o nosso primeiro exemplo de algo chamado *estrutura de dados* - que Ã©, a estrutura em que o R sabe construir os tipos de dados bÃ¡sicos. 
 
-Conseguimos ver que isso é um *data.frame* adicionando a função `class` nele:
+Conseguimos ver que isso Ã© um *data.frame* adicionando a funÃ§Ã£o `class` nele:
 
 ```{r}
 class(cats)
 ```
 
-Para utlizarmos com sucesso nossos dados no R, precisamos entender o que as estrutaras básicas de dados são, e como elas se comportam.Por hora, vamos remover aquela linha extra dos nossos dados e recarregá-lo, enquanto aprofundamos a investigação desse comportamento:
+Para utlizarmos com sucesso nossos dados no R, precisamos entender o que as estrutaras bÃ¡sicas de dados sÃ£o, e como elas se comportam.Por hora, vamos remover aquela linha extra dos nossos dados e recarregÃ¡-lo, enquanto aprofundamos a investigaÃ§Ã£o desse comportamento:
 
 feline-data.csv:
 
@@ -165,7 +165,7 @@ cats <- cats_orig
 ```
 
 
-## Vetores e Coerção de Tipo
+## Vetores e CoerÃ§Ã£o de Tipo
 
 Para melhor entender esse comportamento, vamos conhecer mais outra estrutura de dados:
 O *vetor*.
@@ -175,7 +175,7 @@ my_vector <- vector(length = 3)
 my_vector
 ```
 
-Um vetor em R é essencialmente uma lista de coisas, com a condição especial que *tudo  no vetor precisa ser do mesmo tipo básico de dados*. Se você não escolher o tipo de dados, ele será padronizado como `logico`; ou, você pode declarar um vetor vazio do tipo que você quiser.
+Um vetor em R Ã© essencialmente uma lista de coisas, com a condiÃ§Ã£o especial que *tudo  no vetor precisa ser do mesmo tipo bÃ¡sico de dados*. Se vocÃª nÃ£o escolher o tipo de dados, ele serÃ¡ padronizado como `logico`; ou, vocÃª pode declarar um vetor vazio do tipo que vocÃª quiser.
 
 
 ```{r}
@@ -183,49 +183,49 @@ another_vector <- vector(mode='character', length=3)
 another_vector
 ```
 
-Você pode checar se algo é um vetor:
+VocÃª pode checar se algo Ã© um vetor:
 
 ```{r}
 str(another_vector)
 ```
 
-Essa sa�?da um tanto enigmática para esse comando indica o tipo básico de dados encontrados no vetor - nesse caso `chr`, caracter; uma indicação do número de coisas no vetor - na realidade, os �?ndices do vetor, nesse caso `[1:3]`; e alguns exemplos do que está no vetor - nesse caso uma série vazia de caracteres. Se similarmente fizermos
+Essa saÃ?da um tanto enigmÃ¡tica para esse comando indica o tipo bÃ¡sico de dados encontrados no vetor - nesse caso `chr`, caracter; uma indicaÃ§Ã£o do nÃºmero de coisas no vetor - na realidade, os Ã?ndices do vetor, nesse caso `[1:3]`; e alguns exemplos do que estÃ¡ no vetor - nesse caso uma sÃ©rie vazia de caracteres. Se similarmente fizermos
 
 ```{r}
 str(cats$weight)
 ```
 
-Veremos que isto é um vetor, também - *as colunas de dados que carregamos nos data.frames do R são todos vetores*, e essa é a raiz do porque que o R força tudo em uma coluna a ser do mesmo tipo básico de dados. 
+Veremos que isto Ã© um vetor, tambÃ©m - *as colunas de dados que carregamos nos data.frames do R sÃ£o todos vetores*, e essa Ã© a raiz do porque que o R forÃ§a tudo em uma coluna a ser do mesmo tipo bÃ¡sico de dados. 
 
-> ## Discussão 1
+> ## DiscussÃ£o 1
 >
-> Porque o R é tão rigoroso sobre o que colocamos em nossas colunas de dados?
+> Porque o R Ã© tÃ£o rigoroso sobre o que colocamos em nossas colunas de dados?
 > Como isso nos ajuda?
 >
-> > ## Discussão 1
+> > ## DiscussÃ£o 1
 > >
-> > Mantendo tudo na culuna o mesmo, nos possibilitamos fazer simples suposições > >a respeito de nossos dados; se você pode interpretar uma entrada na coluna 
-> >como um número, então pode interpretar *todos* eles como números, e então não
-> >precisaremos checar toda vez. Essa consistência, como usar consistentemente o > >mesmo separador nos nossos aquivos de dados, é o que as pessoas querem dizer 
+> > Mantendo tudo na culuna o mesmo, nos possibilitamos fazer simples suposiÃ§Ãµes > >a respeito de nossos dados; se vocÃª pode interpretar uma entrada na coluna 
+> >como um nÃºmero, entÃ£o pode interpretar *todos* eles como nÃºmeros, e entÃ£o nÃ£o
+> >precisaremos checar toda vez. Essa consistÃªncia, como usar consistentemente o > >mesmo separador nos nossos aquivos de dados, Ã© o que as pessoas querem dizer 
 > >quando falam em *dados limpos*; no longo prazo essa consistencia contribui 
-> >para tornar nossa vida mais fácil no R. 
+> >para tornar nossa vida mais fÃ¡cil no R. 
 > {: .solution}
 {: .discussion}
 
-Você também pode criar vetores com conteudos expl�?citos com a função combine:
+VocÃª tambÃ©m pode criar vetores com conteudos explÃ?citos com a funÃ§Ã£o combine:
 
 ```{r}
 combine_vector <- c(2,6,3)
 combine_vector
 ```
 
-Dado o que aprendemos até agora, o que você acha que irá produzir o seguinte?
+Dado o que aprendemos atÃ© agora, o que vocÃª acha que irÃ¡ produzir o seguinte?
 
 ```{r}
 quiz_vector <- c(2,6,'3')
 ```
 
-Isso é algo chamado *coerção de tipo*, e é a fonte de muitas surpesas e a razão de precisarmos estar alertas ao tipo básico de dados e como o R irá interpretá-los.Quando o R encontra uma mistura de tipos (aqui, numérico e caracter) para combinar em um único vetor, ele irá forçá-los todos para serem do mesmo tipo. Considere:
+Isso Ã© algo chamado *coerÃ§Ã£o de tipo*, e Ã© a fonte de muitas surpesas e a razÃ£o de precisarmos estar alertas ao tipo bÃ¡sico de dados e como o R irÃ¡ interpretÃ¡-los.Quando o R encontra uma mistura de tipos (aqui, numÃ©rico e caracter) para combinar em um Ãºnico vetor, ele irÃ¡ forÃ§Ã¡-los todos para serem do mesmo tipo. Considere:
 
 ```{r}
 coercion_vector <- c('a', TRUE)
@@ -234,8 +234,8 @@ another_coercion_vector <- c(0, TRUE)
 another_coercion_vector
 ```
 
-A regra de coerção segue: `logico` -> `inteiro` -> `numerico` -> `complexo` ->
-`caracter`, onde -> pode ser lido como *foram transformados em*. Você pode forçar a coerção contra essa ordem usando funções `as.`:
+A regra de coerÃ§Ã£o segue: `logico` -> `inteiro` -> `numerico` -> `complexo` ->
+`caracter`, onde -> pode ser lido como *foram transformados em*. VocÃª pode forÃ§ar a coerÃ§Ã£o contra essa ordem usando funÃ§Ãµes `as.`:
 
 ```{r}
 character_vector_example <- c('0','2','4')
@@ -246,10 +246,10 @@ numeric_coerced_to_logical <- as.logical(character_coerced_to_numeric)
 numeric_coerced_to_logical
 ```
 
-Como você pode ver, algumas coisas surpreendentes podem acontecer quando o R força algum tipo básico de dados em outro! Pormenores da coerção de tipo a parte:  se seus dados não se parecem com o que você pensava que eles deveria se parecer, a coerção de tipo pode ser a culpada; tenha certeza qe tudo no seus vetores é do mesmo tipo e nas suas colunas de data.frames, ou você terá supresas desagradáveis!
+Como vocÃª pode ver, algumas coisas surpreendentes podem acontecer quando o R forÃ§a algum tipo bÃ¡sico de dados em outro! Pormenores da coerÃ§Ã£o de tipo a parte:  se seus dados nÃ£o se parecem com o que vocÃª pensava que eles deveria se parecer, a coerÃ§Ã£o de tipo pode ser a culpada; tenha certeza qe tudo no seus vetores Ã© do mesmo tipo e nas suas colunas de data.frames, ou vocÃª terÃ¡ supresas desagradÃ¡veis!
 
-Mas a coerção também pode ser bastante útil! Por exemplo, nos nossos dados `cats`
-`likes_string` é numérico, mas nós sabemos que os 1s and 0s representam na realidade `VERDADEIRO` e `FALSO` (uma maneira comum de representá-los). Nós devemos usar o tipo de dados `lógico` aqui, que tem dois estados: `VERDADEIRO` ou `FALSO`, que é exatamente o que nossos dados representam. Nós podemos 'coagir' esssa coluna para que seja`lógica` ussando a função `as.logical`:
+Mas a coerÃ§Ã£o tambÃ©m pode ser bastante Ãºtil! Por exemplo, nos nossos dados `cats`
+`likes_string` Ã© numÃ©rico, mas nÃ³s sabemos que os 1s and 0s representam na realidade `VERDADEIRO` e `FALSO` (uma maneira comum de representÃ¡-los). NÃ³s devemos usar o tipo de dados `lÃ³gico` aqui, que tem dois estados: `VERDADEIRO` ou `FALSO`, que Ã© exatamente o que nossos dados representam. NÃ³s podemos 'coagir' esssa coluna para que seja`lÃ³gica` ussando a funÃ§Ã£o `as.logical`:
 
 ```{r}
 cats$likes_string
@@ -257,7 +257,7 @@ cats$likes_string <- as.logical(cats$likes_string)
 cats$likes_string
 ```
 
-A função `c()` também irá anexar coisas a um vetor existente:
+A funÃ§Ã£o `c()` tambÃ©m irÃ¡ anexar coisas a um vetor existente:
 
 ```{r}
 ab_vector <- c('a', 'b')
@@ -266,7 +266,7 @@ combine_example <- c(ab_vector, 'SWC')
 combine_example
 ```
 
-Você também pode fazer séries de números:
+VocÃª tambÃ©m pode fazer sÃ©ries de nÃºmeros:
 
 ```{r}
 mySeries <- 1:10
@@ -286,7 +286,7 @@ class(sequence_example)
 typeof(sequence_example)
 ```
 
-Por fim, você pode nomear os elementos em seu vetor:
+Por fim, vocÃª pode nomear os elementos em seu vetor:
 
 ```{r}
 my_example <- 5:8
@@ -297,11 +297,11 @@ names(my_example)
 
 > ## Desafio 1
 >
-> Comece criando um vetor com os números 1 a 26.
-> Multiplique o vetor por 2, e dê ao vetor resultante nomes de A a Z (dica: 
+> Comece criando um vetor com os nÃºmeros 1 a 26.
+> Multiplique o vetor por 2, e dÃª ao vetor resultante nomes de A a Z (dica: 
 > existe um atributo em vetores chamado `LETTERS`)
 
-> > ## Solução do Desafio 1
+> > ## SoluÃ§Ã£o do Desafio 1
 > >
 > > ```{r}
 > > x <- 1:26
@@ -314,7 +314,7 @@ names(my_example)
 
 ## Data Frames
 
-Dizems que colunas nos data.frames são vetores:
+Dizems que colunas nos data.frames sÃ£o vetores:
 
 ```{r}
 str(cats$weight)
@@ -329,7 +329,7 @@ str(cats$coat)
 
 ## Factors
 
-Outro tipo importante de estrutura de dados é chamado de *factor*. Fatores usualmente se parecem com dados de caracter, mas são tipicamente utilizados para representar informação categórica. Por exemplo, vamos criar um vetor rotulando colorações de gato para todos os gatos em nosso estudo:
+Outro tipo importante de estrutura de dados Ã© chamado de *factor*. Fatores usualmente se parecem com dados de caracter, mas sÃ£o tipicamente utilizados para representar informaÃ§Ã£o categÃ³rica. Por exemplo, vamos criar um vetor rotulando coloraÃ§Ãµes de gato para todos os gatos em nosso estudo:
 
 
 ```{r}
@@ -348,9 +348,9 @@ str(CATegories)
 ```
 
 
-Agora o R notou que existem três categorias poss�?veis em nossos dados - mas isso
-também fez algo surpreendente; Em vez de imprimir as sequências que nós demos,
-temos um monte de números.O R substituiu nossas categorias por �?ndices numerdos:
+Agora o R notou que existem trÃªs categorias possÃ?veis em nossos dados - mas isso
+tambÃ©m fez algo surpreendente; Em vez de imprimir as sequÃªncias que nÃ³s demos,
+temos um monte de nÃºmeros.O R substituiu nossas categorias por Ã?ndices numerdos:
 
 ```{r}
 typeof(coats)
@@ -362,20 +362,20 @@ typeof(CATegories)
 
 > Existe um fator no nosso data.frame`cats`? Qual o nome dele?
 > Tente usar `? Read.csv` para descobrir como manter as colunas de texto como
-> vetores  de caracteres em vez de fatores; Então escreva um comando ou dois para
-> mostrar que o fator em `cats` é realmente um vetor de caracteres quando
+> vetores  de caracteres em vez de fatores; EntÃ£o escreva um comando ou dois para
+> mostrar que o fator em `cats` Ã© realmente um vetor de caracteres quando
 > carregado dessa maneira.
 
-> > ## Solução do Desafio 2
+> > ## SoluÃ§Ã£o do Desafio 2
 > >
-> > Uma solução é usar o argumento `stringAsFactors`:
+> > Uma soluÃ§Ã£o Ã© usar o argumento `stringAsFactors`:
 > >
 > > ```{r, eval = FALSE}
 > > cats <- read.csv(file="data/feline-data.csv", stringsAsFactors=FALSE)
 > > str(cats$coat)
 > > ```
 > >
-> > Outra solução é usar o argumento `colClasses`
+> > Outra soluÃ§Ã£o Ã© usar o argumento `colClasses`
 > > que permite um controle mais fino.
 > >
 > > ```{r, eval = FALSE}
@@ -383,14 +383,14 @@ typeof(CATegories)
 > > str(cats$coat)
 > > ```
 > >
-> > Nota: os alunos menos experientes acham os arquivos de ajuda dif�?ceis de entender; Certifique-se de deixá-los saber que isso é comum, e incentivá-los a darem seu melhor palpite com base no significado semântico, mesmo que eles não tenham certeza..
+> > Nota: os alunos menos experientes acham os arquivos de ajuda difÃ?ceis de entender; Certifique-se de deixÃ¡-los saber que isso Ã© comum, e incentivÃ¡-los a darem seu melhor palpite com base no significado semÃ¢ntico, mesmo que eles nÃ£o tenham certeza..
 > {: .solution}
 {: .challenge}
 
 
-Nas funções de modelagem, é importante saber quais são os n�?veis de linha de
-base. Este é considerado o primeiro fator, mas por padrão os fatores são
-rotulados em ordem alfabética. Você pode alterar isso especificando os n�?veis:
+Nas funÃ§Ãµes de modelagem, Ã© importante saber quais sÃ£o os nÃ?veis de linha de
+base. Este Ã© considerado o primeiro fator, mas por padrÃ£o os fatores sÃ£o
+rotulados em ordem alfabÃ©tica. VocÃª pode alterar isso especificando os nÃ?veis:
 
 
 ```{r}
@@ -401,15 +401,15 @@ str(factor_ordering_example)
 
 
 Neste caso, explicitamente dissemos ao R que "controle" deve ser representado por
-1, e "Case" por 2. Esta designação pode ser muito importante para a interpretação
-dos resultados de modelos estat�?sticos!
+1, e "Case" por 2. Esta designaÃ§Ã£o pode ser muito importante para a interpretaÃ§Ã£o
+dos resultados de modelos estatÃ?sticos!
 
 ## Listas
 
 
-Outra estrutura de dados que você vai querer em seu saco de truques é a `lista`.
-Uma lista é mais simples em alguns aspectos do que os outros tipos, porque você
-pode colocar qualquer coisa que você quiser nele:
+Outra estrutura de dados que vocÃª vai querer em seu saco de truques Ã© a `lista`.
+Uma lista Ã© mais simples em alguns aspectos do que os outros tipos, porque vocÃª
+pode colocar qualquer coisa que vocÃª quiser nele:
 
 ```{r}
 list_example <- list(1, "a", TRUE, 1+4i)
@@ -426,15 +426,15 @@ acontece se rodarmos:
 typeof(cats)
 ```
 
-Vemos que os data.frames parecem listas - isto é porque um data.frame é realmente
-uma lista de vetores e fatores, como eles têm que ser - para manter essas colunas
-que são uma mistura de vetores e fatores, o data.frame precisa de algo um pouco
-mais flex�?vel do que um vetor para colocar todas as colunas em uma tabela
-familiar. Em outras palavras, um `data.frame` é uma lista especial em que todos
+Vemos que os data.frames parecem listas - isto Ã© porque um data.frame Ã© realmente
+uma lista de vetores e fatores, como eles tÃªm que ser - para manter essas colunas
+que sÃ£o uma mistura de vetores e fatores, o data.frame precisa de algo um pouco
+mais flexÃ?vel do que um vetor para colocar todas as colunas em uma tabela
+familiar. Em outras palavras, um `data.frame` Ã© uma lista especial em que todos
 os vetores devem ter o mesmo comprimento.
 
-Em nosso exemplo de `gatos`, temos um número inteiro, um duplo e uma variável
-lógica. Como já vimos, cada coluna do data.frame é um vetor.
+Em nosso exemplo de `gatos`, temos um nÃºmero inteiro, um duplo e uma variÃ¡vel
+lÃ³gica. Como jÃ¡ vimos, cada coluna do data.frame Ã© um vetor.
 
 ```{r}
 cats$coat
@@ -444,7 +444,7 @@ str(cats[,1])
 ```
 
 
-Cada linha é uma * observação * de diferentes variáveis, ela própria é um
+Cada linha Ã© uma * observaÃ§Ã£o * de diferentes variÃ¡veis, ela prÃ³pria Ã© um
 data.frame, e assim, pode ser composto de elementos de diferentes tipos
 
 ```{r}
@@ -455,7 +455,7 @@ str(cats[1,])
 
 > ## Desafio 3
 >
-> Há várias maneiras sutilmente diferentes de chamar variáveis, observações e
+> HÃ¡ vÃ¡rias maneiras sutilmente diferentes de chamar variÃ¡veis, observaÃ§Ãµes e
 > elementos dos data.frames:
 >
 > - `cats[1]`
@@ -467,60 +467,60 @@ str(cats[1,])
 > - `cats[1, ]`
 >
 
-> Experimente estes exemplos e explique o que é devolvido por cada um.
+> Experimente estes exemplos e explique o que Ã© devolvido por cada um.
 >
-> * Dica: * Use a função `typeof ()` para examinar o que é retornado em cada
+> * Dica: * Use a funÃ§Ã£o `typeof ()` para examinar o que Ã© retornado em cada
 > caso.
 >
-> > ## Solução do Desafio 3
+> > ## SoluÃ§Ã£o do Desafio 3
 > > ```{r, eval=TRUE, echo=TRUE}
 > > cats[1]
 > > ```
 
 > > Podemos pensar em um data frame como uma lista de vetores. O colchetes `[1]`
-> > retorna a primeira fatia da lista, como outra lista. Neste caso, é a primeira
+> > retorna a primeira fatia da lista, como outra lista. Neste caso, Ã© a primeira
 > > coluna do data frame.
 > > ```{r, eval=TRUE, echo=TRUE}
 > > cats[[1]]
 > > ```
-> > O colchete duplo `[[1]]` retorna o conteúdo do item da lista. Nesse caso
-> > é o conteúdo da primeira coluna, um _vetor_ do tipo _fator_.
+> > O colchete duplo `[[1]]` retorna o conteÃºdo do item da lista. Nesse caso
+> > Ã© o conteÃºdo da primeira coluna, um _vetor_ do tipo _fator_.
 > > ```{r, eval=TRUE, echo=TRUE}
 > > cats$coat
 > > ```
-> > Este exemplo usa o caractere `$` para endereçar itens por nome. _coat_ é a
+> > Este exemplo usa o caractere `$` para endereÃ§ar itens por nome. _coat_ Ã© a
 > > primeira coluna do data frame, novamente um _vetor_ do tipo _fator_.
 > > ```{r, eval=TRUE, echo=TRUE}
 > > cats["coat"]
 > > ```
-> > Aqui estamos usando o colchete simples `["coat"]` substituindo o �?ndice
-> > numérico pelo nome da coluna. Como no exemplo 1, o objeto de retorno é uma
+> > Aqui estamos usando o colchete simples `["coat"]` substituindo o Ã?ndice
+> > numÃ©rico pelo nome da coluna. Como no exemplo 1, o objeto de retorno Ã© uma
 > > _lista_.
 > > ```{r, eval=TRUE, echo=TRUE}
 > > cats[1, 1]
 > > ```
-> > Este exemplo usa um colchete único, mas desta vez nós fornecemos as
-> > coordenadas de linha e coluna. O objeto retornado é o valor na linha 1,
-> > coluna 1. O objeto é um _inteiro_ mas porque é parte de um _vetor_ do tipo
-> > _fator_, o R exibe o rótulo "calico" associado com o valor inteiro
+> > Este exemplo usa um colchete Ãºnico, mas desta vez nÃ³s fornecemos as
+> > coordenadas de linha e coluna. O objeto retornado Ã© o valor na linha 1,
+> > coluna 1. O objeto Ã© um _inteiro_ mas porque Ã© parte de um _vetor_ do tipo
+> > _fator_, o R exibe o rÃ³tulo "calico" associado com o valor inteiro
 > > ```{r, eval=TRUE, echo=TRUE}
 > > cats[, 1]
 > > ```
 > > Como no exemplo anterior, usamos colchetes simples e fornecemos coordenadas
-> > de  linhas e colunas. A coordenada da linha não é especificada, o R
+> > de  linhas e colunas. A coordenada da linha nÃ£o Ã© especificada, o R
 > > interpreta o valor faltante como todos os elementos deste _vetor_ _coluna_.
 > > ```{r, eval=TRUE, echo=TRUE}
 > > cats[1, ]
 > > ```
-> > Novamente, usamos o colchete único com coordenadas de linha e coluna. A
-> > coordenada da coluna não é especificada. O valor de retorno é uma _lista_
+> > Novamente, usamos o colchete Ãºnico com coordenadas de linha e coluna. A
+> > coordenada da coluna nÃ£o Ã© especificada. O valor de retorno Ã© uma _lista_
 > > contendo todos os valores na primeira linha.
 > {: .solution}
 {: .challenge}
 
 ## Matrizes
 
-Por último mas não menos importante é a matriz. Podemos declarar uma matriz cheia
+Por Ãºltimo mas nÃ£o menos importante Ã© a matriz. Podemos declarar uma matriz cheia
 de zeros:
 
 ```{r}
@@ -542,13 +542,13 @@ ncol(matrix_example)
 
 > ## Desafio 4
 >
-> Qual você acha que será o resultado de
+> Qual vocÃª acha que serÃ¡ o resultado de
 > Tente.
-> Você acertou? Porque / Porque não?
+> VocÃª acertou? Porque / Porque nÃ£o?
 >
-> > ## Solução do Desafio 4
+> > ## SoluÃ§Ã£o do Desafio 4
 > >
-> > Qual você acha que será o resultado de
+> > Qual vocÃª acha que serÃ¡ o resultado de
 > > `length(matrix_example)`?
 > >
 > > ```{r}
@@ -556,22 +556,22 @@ ncol(matrix_example)
 > > length(matrix_example)
 > > ```
 > >
-> > Porque uma matriz é um vetor com atributos de dimensão adicionados, `length`
-> > fornece o número total de elementos na matriz.
+> > Porque uma matriz Ã© um vetor com atributos de dimensÃ£o adicionados, `length`
+> > fornece o nÃºmero total de elementos na matriz.
 > {: .solution}
 {: .challenge}
 
 
 > ## Desafio 5
 >
-> Crie outra matriz, dessa vez contendo os números de 1 a 50,
+> Crie outra matriz, dessa vez contendo os nÃºmeros de 1 a 50,
 > com 5 colunas e 10 linhas.
-> Sua função`matrix` preencheu sua matriz por colunas ou por linhas, esse é o
-> comportamento padrão?
-> Veja se você descobre como mudar isto.
-> (Dica: leia a documentação para `matrix`!)
+> Sua funÃ§Ã£o`matrix` preencheu sua matriz por colunas ou por linhas, esse Ã© o
+> comportamento padrÃ£o?
+> Veja se vocÃª descobre como mudar isto.
+> (Dica: leia a documentaÃ§Ã£o para `matrix`!)
 >
-> > ## Solução para o Desafio 5
+> > ## SoluÃ§Ã£o para o Desafio 5
 
 > > ```{r, eval=FALSE}
 > > x <- matrix(1:50, ncol=5, nrow=10)
@@ -584,23 +584,23 @@ ncol(matrix_example)
 > ## Desafio 6
 
 > Crie uma lista de comprimento dois contendo um vetor de caracteres para cada
-uma das seções nesta parte da oficina:
+uma das seÃ§Ãµes nesta parte da oficina:
 >
 >  - Tipos de dados
 >  - Estruturas de dados
 >
 > Preencha cada vetor de caracteres com os nomes dos tipos de dados e estruturas
-> de dados que vimos até agora
+> de dados que vimos atÃ© agora
 >
-> > ## Solução do Desafio 6
+> > ## SoluÃ§Ã£o do Desafio 6
 > > ```{r}
 > > dataTypes <- c('double', 'complex', 'integer', 'character', 'logical')
 > > dataStructures <- c('data.frame', 'vector', 'factor', 'list', 'matrix')
 > > answer <- list(dataTypes, dataStructures)
 > > ```
-> > Nota: é bom fazer uma lista em letras grandes numa placa ou gravado na parede
+> > Nota: Ã© bom fazer uma lista em letras grandes numa placa ou gravado na parede
 > > lista ndo todos esses tipos e estruturas - Deixe-o para o resto da oficina
-> > para lembrar as pessoas da importância dessas noções básicas.
+> > para lembrar as pessoas da importÃ¢ncia dessas noÃ§Ãµes bÃ¡sicas.
 
 > {: .solution}
 {: .challenge}
@@ -608,20 +608,20 @@ uma das seções nesta parte da oficina:
 
 > ## Desafio 7
 >
-> Considere a sa�?da do R da matriz abaixo:
+> Considere a saÃ?da do R da matriz abaixo:
 > ```{r, echo=FALSE}
 > matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)
 > ```
 > Qual foi o comando correto usado para escrever essa matriz? Examine cada
-> comando e tente descobrir o correto antes de digitá-los. Pense em quais
-> matrizes os outros comandos produzirão.
+> comando e tente descobrir o correto antes de digitÃ¡-los. Pense em quais
+> matrizes os outros comandos produzirÃ£o.
 >
 > 1. `matrix(c(4, 1, 9, 5, 10, 7), nrow = 3)`
 > 2. `matrix(c(4, 9, 10, 1, 5, 7), ncol = 2, byrow = TRUE)`
 > 3. `matrix(c(4, 9, 10, 1, 5, 7), nrow = 2)`
 > 4. `matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)`
 >
-> > ## Solução do Desafio 7
+> > ## SoluÃ§Ã£o do Desafio 7
 > >
 
 > > ```{r, eval=FALSE}

@@ -3,20 +3,20 @@ title: Vectorization
 teaching: 10
 exercises: 15
 questions:
-- "How can I operate on all the elements of a vector at once?"
+- "Como eu posso operar todos elementos de um vetor de uma só vez?"
 objectives:
-- "To understand vectorized operations in R."
+- "Compreender operações com vetores no R."
 keypoints:
-- "Use vectorized operations instead of loops."
+- "Usar operações com vetores ao invés de loops."
 source: Rmd
 ---
 
 
 
-Most of R's functions are vectorized, meaning that the function will
-operate on all elements of a vector without needing to loop through
-and act on each element one at a time. This makes writing code more
-concise, easy to read, and less error prone.
+A maior parte das funções no R são vetorizadas, o que significa que a função
+vai operar todos os elementos de um vetor de uma só vez, sem que seja necessario 
+operarcada elemento do vetor de forma individual. Isto faz com que o código seja 
+mais consiso, fácil de ler e menos sujeito ao erro.
 
 
 
@@ -33,9 +33,9 @@ x * 2
 ~~~
 {: .output}
 
-The multiplication happened to each element of the vector.
+A multiplicação foi feita em cada elemento do vetor.
 
-We can also add two vectors together:
+Nós também podemos somar dois vetores:
 
 
 ~~~
@@ -51,7 +51,7 @@ x + y
 ~~~
 {: .output}
 
-Each element of `x` was added to its corresponding element of `y`:
+Cada elemento de `x` foi somado ao elemento correspondente em `y`:
 
 
 ~~~
@@ -64,23 +64,23 @@ y:  6  7  8  9
 {: .r}
 
 
-> ## Challenge 1
+> ## Desafio 1
 >
-> Let's try this on the `pop` column of the `gapminder` dataset.
+> Vamos tentar o seguinte desafio na coluna `pop` do conjunto de dados `gapminder`.
 >
-> Make a new column in the `gapminder` data frame that
-> contains population in units of millions of people.
-> Check the head or tail of the data frame to make sure
-> it worked.
+> Faça uma nova coluna no cojunto de dados `gapminder` que
+> contenha a população em milhões de indivíduos.
+> Cheque o início e o fim do conjunto de dados para ter certeza
+> de que funcionou.
 >
-> > ## Solution to challenge 1
+> > ## Solução do Desafio 1
 > >
-> > Let's try this on the `pop` column of the `gapminder` dataset.
+> > Vamos tentar o seguinte desafio na coluna `pop` do conjunto de dados `gapminder`.
 > >
-> > Make a new column in the `gapminder` data frame that
-> > contains population in units of millions of people.
-> > Check the head or tail of the data frame to make sure
-> > it worked.
+> > Faça uma nova coluna no cojunto de dados `gapminder` que
+> > contenha a população em milhões de indivíduos.
+> > Cheque o início e o fim do conjunto de dados para ter certeza
+> > de que funcionou.
 > >
 > > 
 > > ~~~
@@ -105,18 +105,18 @@ y:  6  7  8  9
 {: .challenge}
 
 
-> ## Challenge 2
+> ## Desafio 2
 >
-> On a single graph, plot population, in
-> millions, against year, for all countries. Don't worry about
->identifying which country is which.
+> Em um unico gráfico, plotar a população, 
+> em milhares, contra anos, para todos os paises. Não se preocupe em
+> identificar cada país.
 >
-> Repeat the exercise, graphing only for China, India, and
->Indonesia. Again, don't worry about which is which.
+> Repita esta exercício somente para a China, India e
+>Indonesia. Novamente, não se preocupe em identificar cada país.
 >
-> > ## Solution to challenge 2
+> > ## Solução do Desafio 2
 > >
-> > Refresh your plotting skills by plotting population in millions against year.
+> > Relembre suas técnicas plotando a população, em milhões, contra anos.
 > >
 > > 
 > > ~~~
@@ -140,11 +140,11 @@ y:  6  7  8  9
 {: .challenge}
 
 
-Comparison operators, logical operators, and many functions are also
-vectorized:
+Operadores de comparação, operadores lógicos e muitas outras funções também são
+vetorizadas:
 
 
-**Comparison operators**
+**Vetores de Comparação**
 
 
 ~~~
@@ -159,7 +159,7 @@ x > 2
 ~~~
 {: .output}
 
-**Logical operators**
+**Operadores lógicos**
 
 ~~~
 a <- x > 3  # or, for clarity, a <- (x > 3)
@@ -174,15 +174,15 @@ a
 ~~~
 {: .output}
 
-> ## Tip: some useful functions for logical vectors
+> ## Dica: algumas funções úteis para operadores lógicos
 >
-> `any()` will return `TRUE` if *any* element of a vector is `TRUE`
-> `all()` will return `TRUE` if *all* elements of a vector are `TRUE`
+> `any()` vai retornar `TRUE` se *any (qualquer)* elemento de um vetor for `TRUE`
+> `all()` vai retornar `TRUE` se *all (todos)* todos os elementos do vetor forem `TRUE`
 {: .callout}
 
-Most functions also operate element-wise on vectors:
+A maior parte das funções também operam com elementos individuais de um vetor:
 
-**Functions**
+**Funções**
 
 ~~~
 x <- 1:4
@@ -197,7 +197,7 @@ log(x)
 ~~~
 {: .output}
 
-Vectorized operations work element-wise on matrices:
+Operações vetorizadas também funcionam com elementos individuais em matrizes:
 
 
 ~~~
@@ -217,10 +217,10 @@ m * -1
 {: .output}
 
 
-> ## Tip: element-wise vs. matrix multiplication
+> ## Dica: multiplicação com elementos individuais x multiplicação matricial
 >
-> Very important: the operator `*` gives you element-wise multiplication!
-> To do matrix multiplication, we need to use the `%*%` operator:
+> Muito importante: o operador `*` realiza a multiplicação com elementos individuais!
+> Para uma multiplicação matricial, nós temos que usar o operador `%*%`:
 >
 > 
 > ~~~
@@ -253,14 +253,14 @@ m * -1
 > ~~~
 > {: .output}
 >
-> For more on matrix algebra, see the [Quick-R reference
+> Para saber mais sobre álgebra matricial, veja [Quick-R reference
 > guide](http://www.statmethods.net/advstats/matrix.html)
 {: .callout}
 
 
-> ## Challenge 3
+> ## Desafio 3
 >
-> Given the following matrix:
+> Dada a seguinte matriz:
 >
 > 
 > ~~~
@@ -279,18 +279,18 @@ m * -1
 > ~~~
 > {: .output}
 >
-> Write down what you think will happen when you run:
+> Escreva o que você acha que vai acontecer se você rodar:
 >
 > 1. `m ^ -1`
 > 2. `m * c(1, 0, -1)`
 > 3. `m > c(0, 20)`
 > 4. `m * c(1, 0, -1, 2)`
 >
-> Did you get the output you expected? If not, ask a helper!
+> Você obteve os resultados esperados? Senão, consulte o painel de ajuda!
 >
-> > ## Solution to challenge 3
+> > ## Solução do Desafio 3
 > >
-> > Given the following matrix:
+> > Dada a seguinte matriz:
 > >
 > > 
 > > ~~~
@@ -310,7 +310,7 @@ m * -1
 > > {: .output}
 > >
 > >
-> > Write down what you think will happen when you run:
+> > Escreva o que você acha que vai acontecer se você rodar:
 > >
 > > 1. `m ^ -1`
 > >
@@ -349,10 +349,10 @@ m * -1
 {: .challenge}
 
 
-> ## Challenge 4
+> ## Desafio 4
 >
-> We're interested in looking at the sum of the
-> following sequence of fractions:
+> Nós estamos interessados em saber a soma da
+> seguinte sequência de frações:
 >
 > 
 > ~~~
@@ -360,14 +360,14 @@ m * -1
 > ~~~
 > {: .r}
 >
-> This would be tedious to type out, and impossible for high values of
-> n.  Use vectorisation to compute x when n=100. What is the sum when
+> Isto seria tedioso demais e impossível de se escrever para valores muito altos
+> de n. Use a vetorização para calcular x quando n=100. Qual é a soma quando
 > n=10,000?
 >
-> > ##  Challenge 4
+> > ##  Solução do Desafio 4
 > >
-> > We're interested in looking at the sum of the
-> > following sequence of fractions:
+> > Nós estamos interessados em saber a soma da
+> > seguinte sequência de frações:
 > >
 > > 
 > > ~~~
@@ -375,10 +375,10 @@ m * -1
 > > ~~~
 > > {: .r}
 > >
-> > This would be tedious to type out, and impossible for
-> > high values of n.
-> > Can you use vectorisation to compute x, when n=100?
-> > How about when n=10,000?
+> > Isto seria tedioso demais e impossível de se escrever para
+> > valores muito altos de n.
+> > Use a vetorização para calcular x, quando n=100?
+> > Qual é a soma quando n=10,000?
 > >
 > > 
 > > ~~~
@@ -422,7 +422,7 @@ m * -1
 > > ~~~
 > > {: .output}
 > >
-> > We can also obtain the same results using a function:
+> > Nós também podemos obter os mesmos resultados usando uma função:
 > > 
 > > ~~~
 > > inverse_sum_of_squares <- function(n) {

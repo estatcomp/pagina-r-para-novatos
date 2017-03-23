@@ -1,20 +1,20 @@
 ---
-title: Producing Reports With knitr
+title: Produzindo relatórios com knitr
 teaching: 60
 exercises: 15
 questions:
-- "How can I integrate software and reports?"
+- "Como posso integrar software e relatórios?"
 objectives:
-- Value of reproducible reports
-- Basics of Markdown
-- R code chunks
-- Chunk options
-- Inline R code
-- Other output formats
+- Valor dos relatórios reproduzíveis
+- Noções básicas de Markdown
+- Pedaços de código R
+- Opções de bloco
+- Código R em linha
+- Outros formatos de saída
 keypoints:
-- "Mix reporting written in R Markdown with software written in R."
-- "Specify chunk options to control formatting."
-- "Use `knitr` to convert these documents into PDF and other formats."
+- "Relatório misto escrito em R Markdown com software escrito em R."
+- "Especifique opções de bloco para controlar a formatação."
+- "Use `knitr` para converter esses documentos em PDF e outros formatos."
 ---
 
 
@@ -84,7 +84,7 @@ Markdown é um sistema para escrever páginas da web, marcando o texto muito com
 Por enquanto, vamos excluir todas as coisas que estão lá e escrever um pouco de markdown.
 
 Você faz coisas **em negrito** usando dois asteriscos, como este: `**negrito**`,
-e você faz as coisas em _itálico_ usando underscores, como este:
+e você faz as coisas em _itálico_ usando sublinhados, como este:
 `_itálico_`.
 
 Você pode criar uma lista com marcadores escrevendo uma lista com hifens ou asteriscos, como este:
@@ -123,7 +123,7 @@ Isso aparecerá como:
 
 1. Negrito com asteriscos duplos
 1. Itálico com sublinhados
-1. Tipo de código fonte com backticks
+1. Tipo de código fonte com acento grave
 
 Você pode criar cabeçalhos de seção de tamanhos diferentes iniciando uma linha com algum número de `#` símbolos:
 
@@ -247,7 +247,7 @@ Não deixe que esses pedaços em linha fiquem divididos entre linhas.
 
 Talvez preceda o parágrafo com um pedaço de código maior que faz cálculos e define coisas, com `include=FALSE` para esse pedaço maior (que é o mesmo que `echo=FALSE` e `results="hide"`).
 
-Eu sou muito particular sobre o arredondamento em tais situações. Eu posso querer 
+Eu sou muito exigente sobre o arredondamento em tais situações. Eu posso querer 
 `2.0`, mas `round(2.03, 1)` vai dar apenas `2`.
 
 A função 

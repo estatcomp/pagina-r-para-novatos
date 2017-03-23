@@ -3,22 +3,22 @@ title: Writing Data
 teaching: 10
 exercises: 10
 questions:
-- "How can I save plots and data created in R?"
+- "Como salvar gráficos e dados criados em R?"
 objectives:
-- "To be able to write out plots and data from R."
+- "Ser capaz de redigir gráficos e dados de R."
 keypoints:
-- "Save plots from RStudio using the 'Export' button."
-- "Use `write.table` to save tabular data."
+- "Salvar gráficos do RStudio usando o botão 'Export'."
+- "Usar `write.table` para salvar dados tabulares."
 source: Rmd
 ---
 
 
 
 
-## Saving plots
+## Como salvar gráficos
 
-You have already seen how to save the most recent plot you create in `ggplot2`,
-using the command `ggsave`. As a refresher:
+Você já viu como salvar o plot mais recente que você criou no `ggplot2`,
+usando o comando `ggsave`. Como utiliza-lo:
 
 
 ~~~
@@ -26,20 +26,20 @@ ggsave("My_most_recent_plot.pdf")
 ~~~
 {: .r}
 
-You can save a plot from within RStudio using the 'Export' button
-in the 'Plot' window. This will give you the option of saving as a
-.pdf or as .png, .jpg or other image formats.
+Você pode salvar um plot de dentro do RStudio usando o botão 'Export'
+na janela 'Plot'. Isto dará a você a opção de salvar como um
+.pdf ou como .png, .jpg ou outro formato de imagem.
 
-Sometimes you will want to save plots without creating them in the
-'Plot' window first. Perhaps you want to make a pdf document with
-multiple pages: each one a different plot, for example. Or perhaps
-you're looping through multiple subsets of a file, plotting data from
-each subset, and you want to save each plot, but obviously can't stop
-the loop to click 'Export' for each one.
+Às vezes você irá querer salvar plots sem criar-los na janela do
+'Plot' primeiro. Talvez você queira fazer um documento pdf com
+várias páginas: cada um com um plot diferente, por exemplo. Ou talvez
+você poder fazendo loop através de vários subconjuntos de um arquivo, plotando dados
+de cada subconjunto e queira salvar cada plot, mas obviamente não pode parar
+o loop terá que clicar em 'Export' para cada um.
 
-In this case you can use a more flexible approach. The function
-`pdf` creates a new pdf device. You can control the size and resolution
-using the arguments to this function.
+Neste caso, você pode usar uma abordagem mais flexível. A função
+`pdf` cria um novo dispositivo pdf. Você pode controlar o tamanho e a
+resolução usando os argumentos desta função.
 
 
 ~~~
@@ -53,28 +53,28 @@ dev.off()
 ~~~
 {: .r}
 
-Open up this document and have a look.
+Abra este documento e dê uma olhada.
 
-> ## Challenge 1
+> ## Desafio 1
 >
-> Rewrite your 'pdf' command to print a second
-> page in the pdf, showing a facet plot (hint: use `facet_grid`)
-> of the same data with one panel per continent.
+> Reescreva seu comando 'pdf' para imprimir uma segunda
+> página no pdf, mostrando um enredo de faceta (dica: use `facet_grid`)
+> dos mesmos dados com um painel por continente.
 {: .challenge}
 
 
-The commands `jpeg`, `png` etc. are used similarly to produce
-documents in different formats.
+Os comandos `jpeg`, `png` etc. São utilizados de forma semelhante para produzir
+documentos em formatos distintos.
 
-## Writing data
+## Escrevendo dados
 
-At some point, you'll also want to write out data from R.
+Em algum momento, você também vai querer digitar os dados de R.
 
-We can use the `write.table` function for this, which is
-very similar to `read.table` from before.
+Podemos usar a função `write.table` para isso, que é
+muito semelhante a `read.table` de antes.
 
-Let's create a data-cleaning script, for this analysis, we
-only want to focus on the gapminder data for Australia:
+Vamos criar um script de dados em branco, para esta análise,
+só queremos focar os dados do gapminder para a Austrália:
 
 
 ~~~
@@ -87,7 +87,7 @@ write.table(aust_subset,
 ~~~
 {: .r}
 
-Let's switch back to the shell to take a look at the data to make sure it looks
+Vamos voltar ao shell para dar uma olhada nos dados para ter certeza de que ele está
 OK:
 
 
@@ -113,12 +113,12 @@ head cleaned-data/gapminder-aus.csv
 ~~~
 {: .output}
 
-Hmm, that's not quite what we wanted. Where did all these
-quotation marks come from? Also the row numbers are
-meaningless.
+Hmm, isso não é exatamente o que queríamos. De onde vieram todas
+essas aspas? Também os números de linha são
+sem sentido.
 
-Let's look at the help file to work out how to change this
-behaviour.
+Vejamos o arquivo de ajuda para descobrir como alterar esse
+comportamento.
 
 
 ~~~
@@ -126,11 +126,11 @@ behaviour.
 ~~~
 {: .r}
 
-By default R will wrap character vectors with quotation marks
-when writing out to file. It will also write out the row and
-column names.
+Por padrão, R envolverá vetores de caracteres com aspas ao
+escrever para o arquivo. Ele também irá escrever os nomes das
+linhas e colunas.
 
-Let's fix this:
+Vamos corrigir isso:
 
 
 ~~~
@@ -142,7 +142,7 @@ write.table(
 ~~~
 {: .r}
 
-Now lets look at the data again using our shell skills:
+Agora vamos olhar para os dados novamente usando nossas habilidades shell:
 
 
 ~~~
@@ -167,15 +167,15 @@ Australia,1992,17481977,Oceania,77.56,23424.76683
 ~~~
 {: .output}
 
-That looks better!
+Isso parece melhor!
 
-> ## Challenge 2
+> ## Desafio 2
 >
-> Write a data-cleaning script file that subsets the gapminder
-> data to include only data points collected since 1990.
+> Faça um novo arquivo de dados com os subconjuntos dos dados gapminder
+> incluindo apenas os dados coletados desde 1990.
 >
-> Use this script to write out the new subset to a file
-> in the `cleaned-data/` directory.
+> Use este script para escrever um novo subconjunto para um arquivo
+> no diretório `cleaned-data/`.
 {: .challenge}
 
 

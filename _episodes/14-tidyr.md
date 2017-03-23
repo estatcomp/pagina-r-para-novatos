@@ -3,13 +3,13 @@ title: Dataframe Manipulation with tidyr
 teaching: 30
 exercises: 15
 questions:
-- "How can I change the format of dataframes?"
+- "Como eu posso mudar o formato de dataframes?"
 objectives:
-- "To be understand the concepts of ‘long’ and ‘wide’ data formats and be able to convert between them with `tidyr`."
+- "Entender os conceitos de formatos de dados 'long' e 'wide' e ser capaz de mudar de um para o outro com o pacote `tidyr`."
 keypoints:
-- "Use the `tidyr` package to change the layout of dataframes."
-- "Use `gather()` to go from wide to long format."
-- "Use `scatter()` to go from long to wide format."
+- "Use o pacote `tidyr` para alterar o layout de dataframes."
+- "Use `gather()` para ir do formato 'wide' para o formato 'long'."
+- "Use `scatter()` para ir do formato 'long' para 'wide'."
 source: Rmd
 ---
 

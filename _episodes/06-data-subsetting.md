@@ -1,19 +1,19 @@
 ---
-title: Subsetting Data
+title: Subconjuntos (*subsets*) de dados
 teaching: 35
 exercises: 15
 questions:
-- "How can I work with subsets of data in R?"
+- "Como eu posso trabalhar com subconjuntos de dados no R?"
 objectives:
-- "To be able to subset vectors, factors, matrices, lists, and data frames"
-- "To be able to extract individual and multiple elements: by index, by name, using comparison operations"
-- "To be able to skip and remove elements from various data structures."
+- "Ser capaz de criar subconjuntos de vetores, fatores, matrizes, listas, e bancos de dados (*data frames*)"
+- "Ser capaz de extrair elementos individuais e múltiplos: por indexador, por nome, e usando operações de comparação"
+- "Ser capaz de pular e remover elementos de várias estruturas de dados."
 keypoints:
-- "Indexing in R starts at 1, not 0."
-- "Access individual values by location using `[]`."
-- "Access slices of data using `[low:high]`."
-- "Access arbitrary sets of data using `[c(...)]`."
-- "Use `which` to select subsets of data based on value."
+- "Indexadores no R começam em 1, não em 0."
+- "Acesso de valores individuais pela posição usando `[]`."
+- "Acessando fatias do dado usando `[menor:maior]`."
+- "Acessando conjuntos arbitrários do dado usando `[c(...)]`."
+- "Use `which` para selecionar subconjuntos do dado baseado num valor."
 source: Rmd
 ---
 

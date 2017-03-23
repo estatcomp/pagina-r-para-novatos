@@ -1,3 +1,7 @@
+<!-- Daniel Henrique Barboza -->
+<!-- 145769 -->
+<!-- hbdaniel@outlook.com -->
+
 ---
 title: "Explorando Data Frames"
 teaching: 20
@@ -151,32 +155,32 @@ cats
 ```
 
 > ## Desafio 1
-  >
-  > Você pode criar um novo data frame direto de dentro do R com a seguinte sintáxe:
-  >```{r}
+>
+> Você pode criar um novo data frame direto de dentro do R com a seguinte sintáxe:
+> ```{r}
 > df <- data.frame(id = c('a', 'b', 'c'),
-                   >                  x = 1:3,
-                   >                  y = c(TRUE, TRUE, FALSE),
-                   >                  stringsAsFactors = FALSE)
->```
+>                  x = 1:3,
+>                  y = c(TRUE, TRUE, FALSE),
+>                  stringsAsFactors = FALSE)
+> ```
 > Fazer um data frame que contém as seguintes informação sobre você mesmo:
-  >
-  > - Nome (name)
+>
+> - Nome (name)
 > - Sobrenome (last name)
 > - Número da sorte (lucky number)
 >
-  > Então use `rbind` para adicionar um novo registro da pessoa sentada ao teu lado.
+> Então use `rbind` para adicionar um novo registro da pessoa sentada ao teu lado.
 > Finalmente, utilize `cbind` para adicionar uma coluna para cada pessoa a responder a questão, "É hora do coffee break?"
 >
-  > > ## Solution to Challenge 1
-  > >```{r}
+> > ## Solution to Challenge 1
+> > ```{r}
 > > df <- data.frame(first = c('Grace'),
-                     > >                  last = c('Hopper'),
-                     > >                  lucky_number = c(0),
-                     > >                  stringsAsFactors = FALSE)
+> >                  last = c('Hopper'),
+> >                  lucky_number = c(0),
+> >                  stringsAsFactors = FALSE)
 > > df <- rbind(df, list('Marie', 'Curie', 238) )
 > > df <- cbind(df, coffeetime = c(TRUE,TRUE))
-> >```
+> > ```
 > {: .solution}
 {: .challenge}
 
@@ -190,23 +194,23 @@ gapminder <- read.csv("data/gapminder-FiveYearData.csv")
 ```
 
 > ## Dicas Variadas
-  >
-  > * Outro tipo de arquivo que você deve encontrar são os dados separados por tabulação, do inglês tab-separetad value files (.tsv). Para especificar tabulação como um separador, utilize `"\\t"` ou `read.delim()`.
 >
-  > * Arquivo também podem ser baixados diretamente da internet para uma pasta local
+> * Outro tipo de arquivo que você deve encontrar são os dados separados por tabulação, do inglês tab-separetad value files (.tsv). Para especificar tabulação como um separador, utilize `"\\t"` ou `read.delim()`.
+>
+> * Arquivo também podem ser baixados diretamente da internet para uma pasta local
 > de seu escolha dentro de seu computador utilizando a função `dowbload.file`.
 > A função `read.csv` pode ser executada para ler o arquivo baixado, por exemplo:
-  >```{r eval=FALSE, echo=TRUE}
+> ```{r eval=FALSE, echo=TRUE}
 > download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
 > gapminder <- read.csv("data/gapminder-FiveYearData.csv")
->```
+> ```
 >
-  > * Alternativamente, você pode também ler arquivos da internet diretamente no R trocando o endereço da pasta por um endereço da web em `read.csv`. Deve-se notar que ao fazer isso nenhuma cópia do arquivo será salva no computador. Por exemplo,
->```{r eval=FALSE, echo=TRUE}
+> * Alternativamente, você pode também ler arquivos da internet diretamente no R trocando o endereço da pasta por um endereço da web em `read.csv`. Deve-se notar que ao fazer isso nenhuma cópia do arquivo será salva no computador. Por exemplo,
+> ```{r eval=FALSE, echo=TRUE}
 > gapminder <- read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")
->```
+> ```
 >
-  > * Podemos ler diretamente uma tabela excel sem
+> * Podemos ler diretamente uma tabela excel sem
 > converter em texto usando o pacote [readxl](https://cran.r-project.org/web/packages/readxl/index.html)
 {: .callout}
 
@@ -280,41 +284,41 @@ Para ter certeza que nossa análise é reproduzível, devemos colocas
 o código em um script para poder voltar a ele depois.
 
 > ## Desafio 2
-  >
-  > Vá a arquivo -> novo arquivo -> script do R, e escreva o script do R
+>
+> Vá a arquivo -> novo arquivo -> script do R, e escreva o script do R
 > para carregar o conjunto gapminder. Coloque-o no diretório `scripts/`
 > e adicione-o ao controle de versão.
 >
-  > Rode o script usando a função `source`, usando o endereço do arquivo
+> Rode o script usando a função `source`, usando o endereço do arquivo
 > como argumento (ou apertando o botão "source" no RStudio)
 >
-  > > ## Solução do Desafio 2
-  > > Os conteúdos de `script/load-gapminder.R`:
-  > >```{r eval = FALSE}
+> > ## Solução do Desafio 2
+> > Os conteúdos de `script/load-gapminder.R`:
+> >```{r eval = FALSE}
 > > download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
 > > gapminder <- read.csv(file = "data/gapminder-FiveYearData.csv")
 > >```
 > > Rode o script e carregue os dados de `gapminder` em uma variável:
-  > >```{r eval = FALSE}
+> >```{r eval = FALSE}
 > > source(file = "scripts/load-gapminder.R")
 > >```
 > {: .solution}
 {: .challenge}
 
 > ## Desafio 3
-  >
-  > Leia a saída de `str(gapminder)` novamente;
+>
+> Leia a saída de `str(gapminder)` novamente;
 > dessa vez, use o que você aprendeu sobre fatores, listas e vetores,
 > bem como a saída de funções como `colnames` e `dim`
 > para explicar tudo o que `str` imprimiu para gapminder significa.
 > Se houver partes que você não consegue interpretar, discuta com seus amigos!
-  >
-  > > ## Solução do Desafio 3
-  > >
-  > > O objeto `gapminder` é um data frame com as colunas
+>
+> > ## Solução do Desafio 3
+> >
+> > O objeto `gapminder` é um data frame com as colunas
 > > - `country` e `continent` são fatores factors.
 > > - `year` é um vetor inteiro.
 > > - `pop`, `lifeExp`, e `gdpPercap` são vetores numéricos.
 > >
-  > {: .solution}
+> {: .solution}
 {: .challenge}

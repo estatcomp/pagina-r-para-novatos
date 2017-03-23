@@ -1,7 +1,3 @@
-<!-- Daniel Henrique Barboza -->
-<!-- 145769 -->
-<!-- hbdaniel@outlook.com -->
-
 ---
 title: "Explorando Data Frames"
 teaching: 20

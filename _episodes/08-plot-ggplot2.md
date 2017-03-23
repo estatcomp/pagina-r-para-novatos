@@ -1,5 +1,5 @@
 ---
-title: Creating Publication-Quality Graphics
+title: Criando Gráficos de Qualidade para Publicação
 teaching: 60
 exercises: 20
 questions:

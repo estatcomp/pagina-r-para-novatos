@@ -1,26 +1,30 @@
+<!-- Daniel Henrique Barboza -->
+<!-- 145769 -->
+<!-- hbdaniel@outlook.com -->
+
 ---
-title: "Exploring Data Frames"
+title: "Explorando Data Frames"
 teaching: 20
 exercises: 10
 questions:
-- "How can I manipulate a data frame?"
+- "Como eu posso manipular um data frame?"
 objectives:
-- "Be able to add and remove rows and columns."
-- "Be able to remove rows with `NA` values."
-- "Be able to append two data frames"
-- "Be able to articulate what a `factor` is and how to convert between `factor` and `character`."
-- "Be able to find basic properties of a data frames including size, class or type of the columns, names, and first few rows."
+- "Ser capaz de adicionar e remover linhas e colunas."
+- "Ser capaz de remover linhas com valores `NA`."
+- "Ser capaz de juntar dois data frames."
+- "Ser capaz de articular o que um `factor`  e como converter entre `factor` e `character`."
+- "Estar apto a descobrir propriedades básicas de data frames, incluindo tamanho, classe, tipo das colunas, nomes, e as primeiras linhas."
 keypoints:
-- "Use `cbind()` to add a new column to a data frame."
-- "Use `rbind()` to add a new row to a data frame."
-- "Remove rows from a data frame."
-- "Use `na.omit()` to remove rows from a data frame with `NA` values."
-- "Use `levels()` and `as.character()` to explore and manipulate factors"
-- "Use `str()`, `nrow()`, `ncol()`, `dim()`, `colnames()`, `rownames()`, `head()` and `typeof()` to understand structure of the data frame"
-- "Read in a csv file using `read.csv()`"
-- "Understand `length()` of a data frame"
+- "Usar `cbind()` para adicionar uma nova coluna ao data frame."
+- "Usar `rbind()` para adicionar uma nova linha ao data frame."
+- "Remover linhas de um data frame."
+- "Usar `na.omit()` para remover linhas com valor `NA` do data frame."
+- "Usar `levels()` e `as.character()` para explorar e manipular fatores"
+- "Usae `str()`, `nrow()`, `ncol()`, `dim()`, `colnames()`, `rownames()`, `head()` e `typeof()` para entender a estrutura de um data frame."
+- "Ler um arquivo csv com `read.csv()`"
+- "Entender o tamanho de um data frame com  `length()`"
 ---
-
+  
 ```{r, include=FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("05-")
@@ -37,8 +41,8 @@ nós iremos aprender algumas coisas a mais sobre trabalhar com data frames.
 Aprendemos anteriormente que colunas em um data frame eram vetores, tal que nossos
 dados eram consistentes em tipo por coluna. Tal que, se nós quiséssemos adicionar uma
 nova coluna nós precisaríamos começar fazendo um novo vetor:
-
-
+  
+  
 ```{r, echo = FALSE}
 cats <- read.csv("data/feline-data.csv")
 ```
@@ -49,23 +53,24 @@ cats
 ```
 
 Nós podemos então adicionar como uma nova coluna via:
-
+  
 ```{r, error=TRUE}
 cats <- cbind(cats, age)
 ```
 
 Por que isso não funcionou? Com certeza, o R quer ver um elemento em nossa nova coluna
 para cada linha da tabela:
-
+  
 ```{r}
 cats
 age <- c(4,5,8)
 cats <- cbind(cats, age)
 cats
 ```
+
 Agora como adicionar linhas - neste caso, nós vimos da última vez que a linhas
 de um data frame são feitas de listas:
-
+  
 ```{r}
 newRow <- list("tortoiseshell", 3.3, TRUE, 9)
 cats <- rbind(cats, newRow)
@@ -83,7 +88,7 @@ fator *coat*, mas 3.3 (um número), TRUE (um lógico) e 9 (um número) foram
 adicionados com sucesso a *weight*, *likes_string*, e *age*, respectivamente, desde
 que esses valores não são fatores e um gato com um 
 *coat* 'tortoiseshell', explicitamente adicionar 'tortoiseshell' como um *nível* no fator:
-
+  
 ```{r}
 levels(cats$coat)
 levels(cats$coat) <- c(levels(cats$coat), 'tortoiseshell')
@@ -92,7 +97,7 @@ cats <- rbind(cats, list("tortoiseshell", 3.3, TRUE, 9))
 Alternativamente, nós podemos modificar uma coluna de fatores para um vetor de caracteres; nós perdemos
 o acesso a categorias do fator, mas podemos subsequentemente adicionar qualquer palavra à 
 coluna sem necessidade de vigiar os níveis do fator:
-
+  
 ```{r}
 str(cats)
 cats$coat <- as.character(cats$coat)
@@ -103,13 +108,13 @@ str(cats)
 Nós sabemos como adicionar linhas e colunas ao nosso data frame no R - mas em nossa
 primeira tentativa de adicionar um gato 'casco de tartaruga' ao data frame, nós acidentalmente
 adicionamos uma linha errada:
-
+  
 ```{r}
 cats
 ```
 
-We can ask for a data frame minus this offending row:
-
+Nós podemos pedir um data frame menos a esta linha ofensiva:
+  
 ```{r}
 cats[-4,]
 ```
@@ -119,13 +124,13 @@ Nota: Nós podemos também remover várias linhas de uma só vez colocando as li
 em um vetor: `cats[c(-4,-5),]`
 
 Alternativaente, nós podemos tirar todas as linhas com valores `NA`:
-
+  
 ```{r}
 na.omit(cats)
 ```
 
 Vamos reatribuir a saída de `cats`, tal que nossas mudanças sejam permanentes:
-
+  
 ```{r}
 cats <- na.omit(cats)
 ```
@@ -135,7 +140,7 @@ cats <- na.omit(cats)
 A chave para lembrar quando adicionar dados a um data frame é *colunas são
 vetores ou fatores, e linhas são listas.* Podemos também juntar dois data frames
 com `rbind`:
-
+  
 ```{r}
 cats <- rbind(cats, cats)
 cats
@@ -143,39 +148,39 @@ cats
 
 Mas agora o nome das linhas estão desnecessariamente complicados. Nós podemos
 remover o nome das linhas, e R irá renomeá-las sequencialmente:
-
+  
 ```{r}
 rownames(cats) <- NULL
 cats
 ```
 
 > ## Desafio 1
->
-> Você pode criar um novo data frame direto de dentro do R com a seguinte sintáxe:
-> ```{r}
+  >
+  > Você pode criar um novo data frame direto de dentro do R com a seguinte sintáxe:
+  >```{r}
 > df <- data.frame(id = c('a', 'b', 'c'),
->                  x = 1:3,
->                  y = c(TRUE, TRUE, FALSE),
->                  stringsAsFactors = FALSE)
-> ```
+                   >                  x = 1:3,
+                   >                  y = c(TRUE, TRUE, FALSE),
+                   >                  stringsAsFactors = FALSE)
+>```
 > Fazer um data frame que contém as seguintes informação sobre você mesmo:
->
-> - Nome (name)
+  >
+  > - Nome (name)
 > - Sobrenome (last name)
 > - Número da sorte (lucky number)
 >
-> Então use `rbind` para adicionar um novo registro da pessoa sentada ao teu lado.
+  > Então use `rbind` para adicionar um novo registro da pessoa sentada ao teu lado.
 > Finalmente, utilize `cbind` para adicionar uma coluna para cada pessoa a responder a questão, "É hora do coffee break?"
 >
-> > ## Solution to Challenge 1
-> > ```{r}
+  > > ## Solution to Challenge 1
+  > >```{r}
 > > df <- data.frame(first = c('Grace'),
-> >                  last = c('Hopper'),
-> >                  lucky_number = c(0),
-> >                  stringsAsFactors = FALSE)
+                     > >                  last = c('Hopper'),
+                     > >                  lucky_number = c(0),
+                     > >                  stringsAsFactors = FALSE)
 > > df <- rbind(df, list('Marie', 'Curie', 238) )
 > > df <- cbind(df, coffeetime = c(TRUE,TRUE))
-> > ```
+> >```
 > {: .solution}
 {: .challenge}
 
@@ -183,40 +188,40 @@ cats
 Até agora, você viu o básico de manipulação de data frames com nossos dados sobre gatos;
 agora vamos utilizar essas habilidades para resumir um conjunto de dados mais realista.
 Vamos ler os dados do conjunto gapminder que baixamos previamente:
-
+  
 ```{r}
 gapminder <- read.csv("data/gapminder-FiveYearData.csv")
 ```
 
 > ## Dicas Variadas
+  >
+  > * Outro tipo de arquivo que você deve encontrar são os dados separados por tabulação, do inglês tab-separetad value files (.tsv). Para especificar tabulação como um separador, utilize `"\\t"` ou `read.delim()`.
 >
-> * Outro tipo de arquivo que você deve encontrar são os dados separados por tabulação, do inglês tab-separetad value files (.tsv). Para especificar tabulação como um separador, utilize `"\\t"` ou `read.delim()`.
->
-> * Arquivo também podem ser baixados diretamente da internet para uma pasta local
+  > * Arquivo também podem ser baixados diretamente da internet para uma pasta local
 > de seu escolha dentro de seu computador utilizando a função `dowbload.file`.
 > A função `read.csv` pode ser executada para ler o arquivo baixado, por exemplo:
-> ```{r eval=FALSE, echo=TRUE}
+  >```{r eval=FALSE, echo=TRUE}
 > download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
 > gapminder <- read.csv("data/gapminder-FiveYearData.csv")
-> ```
+>```
 >
-> * Alternativamente, você pode também ler arquivos da internet diretamente no R trocando o endereço da pasta por um endereço da web em `read.csv`. Deve-se notar que ao fazer isso nenhuma cópia do arquivo será salva no computador. Por exemplo,
-> ```{r eval=FALSE, echo=TRUE}
+  > * Alternativamente, você pode também ler arquivos da internet diretamente no R trocando o endereço da pasta por um endereço da web em `read.csv`. Deve-se notar que ao fazer isso nenhuma cópia do arquivo será salva no computador. Por exemplo,
+>```{r eval=FALSE, echo=TRUE}
 > gapminder <- read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")
-> ```
+>```
 >
-> * Podemos ler diretamente uma tabela excel sem
+  > * Podemos ler diretamente uma tabela excel sem
 > converter em texto usando o pacote [readxl](https://cran.r-project.org/web/packages/readxl/index.html)
 {: .callout}
 
 Vamos investigar um pouco o gapminder; a primeira coisa que sempre devemos
 fazer é checar como os dados estão organizados com `str`:
-
+  
 ```{r}
 str(gapminder)
 ```
 
-We can also examine individual columns of the data frame with our `typeof` function:
+Podemos também examinar individualmente as colunas de um data frame com a função `typeof`:
 
 ```{r}
 typeof(gapminder$year)
@@ -224,96 +229,96 @@ typeof(gapminder$country)
 str(gapminder$country)
 ```
 
-We can also interrogate the data frame for information about its dimensions;
-remembering that `str(gapminder)` said there were 1704 observations of 6
-variables in gapminder, what do you think the following will produce, and why?
+Podemos interrogar um data frame por informação sobre suas dimensões;
+lembrando que `str(gapminder)` disse que há 1704 observações de 6
+variáveis em gapminder, o que você acha que o código a seguir produzirá, e por quê?
 
 ```{r}
 length(gapminder)
 ```
 
-A fair guess would have been to say that the length of a data frame would be the
-number of rows it has (1704), but this is not the case; remember, a data frame
-is a *list of vectors and factors*:
+Uma aposta justa seria dizer que o tamanho do data frame seria o
+número de linhas que ele tem (1704), mas não é o caso; lembre-se, um data frame
+é uma *lista de vetores e fatores*:
 
 ```{r}
 typeof(gapminder)
 ```
 
-When `length` gave us 6, it's because gapminder is built out of a list of 6
-columns. To get the number of rows and columns in our dataset, try:
+Quando `length` nos deu 6, é porque gapminder é construído fora por uma lista de 6
+colunas. Para obter o número de linhas e colunas do data frame, tente:
 
 ```{r}
 nrow(gapminder)
 ncol(gapminder)
 ```
 
-Or, both at once:
+Ou, ambos de uma só vez:
 
 ```{r}
 dim(gapminder)
 ```
 
-We'll also likely want to know what the titles of all the columns are, so we can
-ask for them later:
-
+Nós vamos possivelmente saber quais os nomes de todas as colunas, então nós
+podemos pedir por elas:
+  
 ```{r}
 colnames(gapminder)
 ```
 
-At this stage, it's important to ask ourselves if the structure R is reporting
-matches our intuition or expectations; do the basic data types reported for each
-column make sense? If not, we need to sort any problems out now before they turn
-into bad surprises down the road, using what we've learned about how R
-interprets data, and the importance of *strict consistency* in how we record our
-data.
+Neste ponto, é importante perguntar a nós mesmos se a estrutura que o R está reportando
+bate com nossas intuições e expectativas; os tipos básicos de dados reportados para cada
+coluna fazem sentido? Se não, nós precisamos separar quaisquer problemas agora antes que eles
+se tornem más surpresas pelo caminho, usando o que já aprendemos sobre como o R
+interpreta dados, e a importância da *consciência estrita* em como armazenar nossos dados
 
-Once we're happy that the data types and structures seem reasonable, it's time
-to start digging into our data proper. Check out the first few lines:
+Uma vez que estamos satisfeitos que os tipos de dados e as estruturas parecem 
+razoáveis, é hora de começar a explorar os dados propriamente. Confira as primeiras
+linhas:
 
 ```{r}
 head(gapminder)
 ```
 
-To make sure our analysis is reproducible, we should put the code
-into a script file so we can come back to it later.
+Para ter certeza que nossa análise é reproduzível, devemos colocas
+o código em um script para poder voltar a ele depois.
 
-> ## Challenge 2
+> ## Desafio 2
+  >
+  > Vá a arquivo -> novo arquivo -> script do R, e escreva o script do R
+> para carregar o conjunto gapminder. Coloque-o no diretório `scripts/`
+> e adicione-o ao controle de versão.
 >
-> Go to file -> new file -> R script, and write an R script
-> to load in the gapminder dataset. Put it in the `scripts/`
-> directory and add it to version control.
+  > Rode o script usando a função `source`, usando o endereço do arquivo
+> como argumento (ou apertando o botão "source" no RStudio)
 >
-> Run the script using the `source` function, using the file path
-> as its argument (or by pressing the "source" button in RStudio).
->
-> > ## Solution to Challenge 2
-> > The contents of `script/load-gapminder.R`:
-> > ```{r eval = FALSE}
+  > > ## Solução do Desafio 2
+  > > Os conteúdos de `script/load-gapminder.R`:
+  > >```{r eval = FALSE}
 > > download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
 > > gapminder <- read.csv(file = "data/gapminder-FiveYearData.csv")
-> > ```
-> > To run the script and load the data into the `gapminder` variable:
-> > ```{r eval = FALSE}
+> >```
+> > Rode o script e carregue os dados de `gapminder` em uma variável:
+  > >```{r eval = FALSE}
 > > source(file = "scripts/load-gapminder.R")
-> > ```
+> >```
 > {: .solution}
 {: .challenge}
 
-> ## Challenge 3
->
-> Read the output of `str(gapminder)` again;
-> this time, use what you've learned about factors, lists and vectors,
-> as well as the output of functions like `colnames` and `dim`
-> to explain what everything that `str` prints out for gapminder means.
-> If there are any parts you can't interpret, discuss with your neighbors!
->
-> > ## Solution to Challenge 3
+> ## Desafio 3
+  >
+  > Leia a saída de `str(gapminder)` novamente;
+> dessa vez, use o que você aprendeu sobre fatores, listas e vetores,
+> bem como a saída de funções como `colnames` e `dim`
+> para explicar tudo o que `str` imprimiu para gapminder significa.
+> Se houver partes que você não consegue interpretar, discuta com seus amigos!
+  >
+  > > ## Solução do Desafio 3
+  > >
+  > > O objeto `gapminder` é um data frame com as colunas
+> > - `country` e `continent` são fatores factors.
+> > - `year` é um vetor inteiro.
+> > - `pop`, `lifeExp`, e `gdpPercap` são vetores numéricos.
 > >
-> > The object `gapminder` is a data frame with columns
-> > - `country` and `continent` are factors.
-> > - `year` is an integer vector.
-> > - `pop`, `lifeExp`, and `gdpPercap` are numeric vectors.
-> >
-> {: .solution}
+  > {: .solution}
 {: .challenge}

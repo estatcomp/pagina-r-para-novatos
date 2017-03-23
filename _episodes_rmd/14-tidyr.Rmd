@@ -45,7 +45,7 @@ Pesquisadores muitas vezes querem alterar seus dados do formato 'wide' para 'lon
 No formato 'long', normalmente você tem uma coluna para a variável observada e as outras colunas são variáveis  ID.
 
 
-No formato 'wide' cada linha é geralmente um local / assunto / paciente e você tem variáveis de observações múltiplas contendo o mesmo tipo de dados. Estas podem ser observações repetidas ao longo do tempo, ou observações de múltiplas variáveis (ou uma mistura de ambos). Você pode achar que a entrada de dados pode ser mais simples ou algumas outras aplicações podem preferir o formato 'wide'. Entretanto, muitas das funções do R foram projetadas assumindo que você tem dados de formato 'long'. Este tutorial irá ajudá-lo a transformar seus dados de forma eficiente, independentemente do formato original.
+No formato 'wide' cada linha é geralmente um local / assunto / paciente e você tem variáveis de observações múltiplas contendo o mesmo tipo de dados. Estas podem ser  observações repetidas ao longo do tempo, ou observações de múltiplas variáveis (ou uma mistura de ambos). Você pode achar que a entrada de dados pode ser mais simples ou algumas outras aplicações podem preferir o formato 'wide'. Entretanto, muitas das funções do R foram projetadas assumindo que você tem dados de formato 'long'. Este tutorial irá ajudá-lo a transformar seus dados de forma eficiente, independentemente do formato original.
 
 ![](../fig/14-tidyr-fig1.png)
 

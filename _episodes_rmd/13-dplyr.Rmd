@@ -3,9 +3,9 @@ title: Dataframe Manipulation with dplyr
 teaching: 40
 exercises: 15
 questions:
-- "How can I manipulate dataframes without repeating myself?"
+- "Como posso manipular dataframes sem ser repetitivo?"
 objectives:
-- " To be able to use the six main dataframe manipulation 'verbs' with pipes in  `dplyr`."
+- "Ser capaz de usar os seis principais 'verbos' de manipulação de dataframes utilizando o `dplyr`."
 keypoints:
 - "Use o pacote `dplyr` para manipular dataframes."
 - "Use a função `select()` para escolher variáveis de um dataframe."
